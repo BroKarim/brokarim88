@@ -18,8 +18,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "fumadocs-mdx:collections/*": [".source/*"],
+      "fumadocs-mdx:collections/server": [".source/server"]
     }
   },
   "include": [
@@ -29,6 +32,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "next.config.mjs"  ],
   "exclude": ["node_modules"]
 }
