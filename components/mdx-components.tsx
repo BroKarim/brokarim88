@@ -14,7 +14,7 @@ import { CodeTabs } from "@/components/code-tabs";
 import { CopyButton } from "@/components/copy-button";
 import { getIconForLanguageExtension } from "@/components/icons";
 import { TechStack } from "@/components/tech-stack";
-
+import { MediaPreview } from "./media-preview";
 export const mdxComponents = {
   h1: ({ className, ...props }: React.ComponentProps<"h1">) => <h1 className={cn("font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight", className)} {...props} />,
   h2: ({ className, ...props }: React.ComponentProps<"h2">) => {
@@ -138,6 +138,7 @@ export const mdxComponents = {
   Callout,
   Accordion,
   AccordionContent,
+
   AccordionItem,
   AccordionTrigger,
   Alert,
@@ -151,4 +152,5 @@ export const mdxComponents = {
   ),
 
   TechStack,
+  MediaPreview,
 };

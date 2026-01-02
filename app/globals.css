@@ -408,6 +408,12 @@
   }
 }
 
+/* globals.css */
+::-webkit-scrollbar {
+  display: none;
+}
+
+
 @utility no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
