@@ -1,7 +1,12 @@
-import { docs } from "fumadocs-mdx:collections/server";
+import { work } from "fumadocs-mdx:collections/server";
 import { loader } from "fumadocs-core/source";
 
-export const source = loader({
-  baseUrl: "/docs",
-  source: docs.toFumadocsSource(),
+export const workSource = loader({
+  baseUrl: "/work",
+  source: work.toFumadocsSource(),
 });
+
+// export const ideasSource = loader({
+//   baseUrl: "/ideas",
+//   source: ideas.toFumadocsSource(),
+// });
