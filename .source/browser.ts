@@ -7,6 +7,7 @@ const create = browser<typeof Config, import("fumadocs-mdx/runtime/types").Inter
   }
 }>();
 const browserCollections = {
-  work: create.doc("work", {"konten2.mdx": () => import("../content/work/konten2.mdx?collection=work"), "side-school.mdx": () => import("../content/work/side-school.mdx?collection=work"), }),
+  main: create.doc("main", {"main.mdx": () => import("../content/main.mdx?collection=main"), "work/21oss.mdx": () => import("../content/work/21oss.mdx?collection=main"), "work/konten2.mdx": () => import("../content/work/konten2.mdx?collection=main"), "work/side-school.mdx": () => import("../content/work/side-school.mdx?collection=main"), }),
+  work: create.doc("work", {"21oss.mdx": () => import("../content/work/21oss.mdx?collection=work"), "konten2.mdx": () => import("../content/work/konten2.mdx?collection=work"), "side-school.mdx": () => import("../content/work/side-school.mdx?collection=work"), }),
 };
 export default browserCollections;
