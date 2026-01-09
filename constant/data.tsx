@@ -35,19 +35,13 @@ export const WORK_PROJECTS: Item[] = [
 export const ARTICLES: Item[] = [
   {
     id: "1",
-    slug: "design",
-    title: "Design Systems",
-    description: "Building scalable design systems",
-  },
-  {
-    id: "2",
-    slug: "development",
-    title: "Modern Development",
-    description: "Best practices in web development",
+    slug: "blurry-placeholders",
+    title: "How to Generate Blurry Placeholders for Cloud Images (Automatically)",
+    description: "Building an automated pipeline for instant visual feedback using tiny blurred placeholders.",
   },
 ];
 
 export const SECTIONS = {
   work: { path: "/work", defaultSlug: "21oss", items: WORK_PROJECTS },
-  ideas: { path: "/ideas", defaultSlug: "design", items: ARTICLES },
+  articles: { path: "/articles", defaultSlug: "blurry-placeholders", items: ARTICLES },
 } as const;

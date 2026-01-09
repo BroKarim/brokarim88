@@ -1,0 +1,211 @@
+---
+title: How to Generate Blurry Placeholders for Cloud Images (Automatically)
+media: https://res.cloudinary.com/dctl5pihh/video/upload/v1767948527/chainsaw-man-pixel-art.1920x1080_jrhgno.mp4
+---
+
+When building a media-heavy portfolio, you eventually hit a performance wall: 
+>images and videos take time to load.
+
+On a 5G connection, your site is a dream. On a flaky coffee-shop Wi-Fi? It’s a nightmare.
+
+Sure, `loading="lazy"` helps, but it doesn't solve the "staring at a blank void" problem. I wanted instant visual feedback. A soft, blurry preview that says, *"Hang tight, something beautiful is coming."*
+
+Here’s how I automated a placeholder pipeline for Cloudinary media.’s how I built an **automated placeholder pipeline** for media hosted on Cloudinary.
+
+---
+
+## The Strategy: Tiny Blurred Previews
+
+The idea is simple and effective:
+
+1. Scan your project for media URLs.
+2. Generate a **comically small** version (20px wide).
+3. Apply a heavy blur so the pixels don't hurt anyone's eyes.
+4. Use it as a CSS background while the "real" asset downloads.
+
+Because the preview is extremely small, it loads instantly and costs almost nothing in bandwidth.
+
+---
+
+## Why Not Base64?
+
+Many implementations embed placeholders as base64 strings.  
+That works — but with Cloudinary, we already have a better option.
+
+Since I use **Cloudinary**, I can just "ask" the URL to transform itself:
+
+- **For Images:** `w_20,q_30,e_blur:200`
+- **For Videos:** `so_0,w_20,q_30,e_blur:200` (This grabs the first frame and blurs it).
+
+## Build Script
+
+I created a script that runs before build and generates a metadata file mapping each media URL to its placeholder.
+
+```
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+const matter = require("gray-matter");
+
+const CONTENT_DIRS = [path.join(process.cwd(), "content/work"), path.join(process.cwd(), "content/articles")];
+
+const OUTPUT_PATH = path.join(process.cwd(), "constant/placeholders/metadata.json");
+
+const IMAGE_REGEX = /\.(png|jpe?g|jpg|webp)$/i;
+const VIDEO_REGEX = /\.(mp4|mov)$/i;
+
+function generateImagePlaceholder(url) {
+  return url.replace("/upload/", "/upload/w_20,q_30,e_blur:200/");
+}
+
+function generateVideoPlaceholder(url) {
+  return url
+    .replace("/video/upload/", "/video/upload/so_0/")
+    .replace("/upload/", "/upload/w_20,q_30,e_blur:200/")
+    .replace(/\.(mp4|mov)$/i, ".jpg");
+}
+
+function hash(input) {
+  return crypto.createHash("sha256").update(input).digest("hex");
+}
+
+function loadExisting() {
+  if (!fs.existsSync(OUTPUT_PATH)) return {};
+  return JSON.parse(fs.readFileSync(OUTPUT_PATH, "utf8"));
+}
+
+function collectMediaUrls() {
+  const urls = [];
+
+  for (const dir of CONTENT_DIRS) {
+    if (!fs.existsSync(dir)) continue;
+
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".mdx"));
+
+    for (const file of files) {
+      const raw = fs.readFileSync(path.join(dir, file), "utf8");
+      const { data } = matter(raw);
+
+      if (typeof data.media === "string") {
+        urls.push(data.media.split("?")[0]); // normalize Cloudinary URLs
+      }
+    }
+  }
+
+  return urls;
+}
+
+function run() {
+  const existing = loadExisting();
+  const urls = collectMediaUrls();
+
+  const next = { ...existing };
+
+  for (const url of urls) {
+    const currentHash = hash(url);
+
+    if (existing[url] && existing[url].hash === currentHash) {
+      continue; // cache hit
+    }
+
+    if (IMAGE_REGEX.test(url)) {
+      next[url] = {
+        type: "image",
+        placeholder: generateImagePlaceholder(url),
+        hash: currentHash,
+      };
+      continue;
+    }
+
+    if (VIDEO_REGEX.test(url)) {
+      next[url] = {
+        type: "video",
+        placeholder: generateVideoPlaceholder(url),
+        hash: currentHash,
+      };
+    }
+  }
+
+  fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
+  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(next, null, 2));
+
+  console.log(`✓ Generated ${Object.keys(next).length} placeholders`);
+}
+
+run();
+```
+
+The output looks like this:
+
+```
+{
+  "https://res.cloudinary.com/.../video/upload/v1767428487/demo.mp4": {
+    "type": "video",
+    "placeholder": "https://res.cloudinary.com/.../video/upload/w_20,q_30,e_blur:200/so_0/v1767428487/demo.jpg",
+    "hash": "478dc2c339..."
+  }
+}
+```
+
+## Looking Up the Placeholder
+
+At runtime, components don’t compute anything.
+They just look up metadata.
+
+```
+// lib/media-placeholder.ts
+import rawMetadata from "@/constants/placeholders/metadata.json";
+
+type MediaMeta = {
+  type: "image" | "video";
+  placeholder: string;
+  hash?: string;
+};
+
+const metadata = rawMetadata as Record<string, MediaMeta>;
+
+export function getMediaPlaceholder(src: string): string | null {
+  const key = src.split("?")[0]; // important for Cloudinary URLs
+  return metadata[key]?.placeholder ?? null;
+}
+```
+
+This keeps runtime logic extremely cheap.
+
+## Rendering the Placeholder
+
+The key trick is not rendering the placeholder as an `<img>` element.
+Instead, it’s applied as a CSS `background-image` on the container.
+
+```
+
+<div
+  className="relative aspect-video overflow-hidden rounded-xl"
+  style={
+    placeholder
+      ? {
+          backgroundImage: `url(${placeholder})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }
+      : undefined
+  }
+>
+  <video src={src} autoPlay muted loop playsInline className="w-full h-full object-cover" />
+</div>
+```
+
+- The background appears immediately
+- It occupies the exact final layout
+- The video simply paints over it when ready
+
+## Caching & Build Performance
+
+Processing media on every build would be wasteful, so the script stores a content hash.
+If the hash hasn’t changed, the media is skipped.
+In practice:
+
+- 90–95% cache hit rate
+- Sub-second placeholder generation
+- No noticeable impact on build times
+

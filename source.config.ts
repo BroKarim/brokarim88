@@ -24,15 +24,16 @@ export const work = defineDocs({
     }),
   },
 });
-
-// export const ideas = defineDocs({
-//   dir: "content/ideas",
-//   docs: {
-//     schema: frontmatterSchema.extend({
-//       tags: z.array(z.string()).optional(),
-//       publishedOn: z.string().optional(),
-//     }),
-//   },
-// });
+export const articles = defineDocs({
+  dir: "content/articles",
+  docs: {
+    schema: frontmatterSchema.extend({
+      tag: z.string().optional(),
+      author: z.string().optional(),
+      media: z.string().optional(),
+      published: z.boolean().optional().default(true),
+    }),
+  },
+});
 
 export default defineConfig();

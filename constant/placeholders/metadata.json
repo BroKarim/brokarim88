@@ -1,0 +1,22 @@
+{
+  "https://res.cloudinary.com/dctl5pihh/video/upload/v1767428487/21oss_rhwbd8.mp4": {
+    "type": "video",
+    "placeholder": "https://res.cloudinary.com/dctl5pihh/video/upload/w_20,q_30,e_blur:200/so_0/v1767428487/21oss_rhwbd8.jpg",
+    "hash": "478dc2c3391162178874492ebf2f91275716f364027126a03cf1dc76b1b856b7"
+  },
+  "https://res.cloudinary.com/dctl5pihh/video/upload/v1767924258/og-table-porto_pmr1ab.mov": {
+    "type": "video",
+    "placeholder": "https://res.cloudinary.com/dctl5pihh/video/upload/w_20,q_30,e_blur:200/so_0/v1767924258/og-table-porto_pmr1ab.jpg",
+    "hash": "263a6361398f0b65b327c37f145f0fc297ce9b849b6f8249a4773e78e556496d"
+  },
+  "https://res.cloudinary.com/dctl5pihh/video/upload/v1767922087/zn-demo-porto_dvgli9.mov": {
+    "type": "video",
+    "placeholder": "https://res.cloudinary.com/dctl5pihh/video/upload/w_20,q_30,e_blur:200/so_0/v1767922087/zn-demo-porto_dvgli9.jpg",
+    "hash": "160f6bacdabb93ea230696eed46d36f7142a56d347145c74405b1f34fda2c604"
+  },
+  "https://res.cloudinary.com/dctl5pihh/video/upload/v1767948527/chainsaw-man-pixel-art.1920x1080_jrhgno.mp4": {
+    "type": "video",
+    "placeholder": "https://res.cloudinary.com/dctl5pihh/video/upload/w_20,q_30,e_blur:200/so_0/v1767948527/chainsaw-man-pixel-art.1920x1080_jrhgno.jpg",
+    "hash": "23689c30408cf6cc2fbe0d550c2ea0448ced9cf5da75737a222869e58df1fc53"
+  }
+}

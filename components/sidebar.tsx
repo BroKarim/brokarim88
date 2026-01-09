@@ -73,9 +73,7 @@ export function Sidebar({ items, basePath }: SidebarProps) {
         </div>
       </div>
 
-      {/* Items List */}
-
-      <div className="flex-1 overflow-y-auto px-4 pb-8 space-y-1 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto px-4 font-mono space-y-1 custom-scrollbar">
         {items.map((item) => (
           <Link
             key={item.id}

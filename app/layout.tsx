@@ -27,10 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={` ${geistMono.variable} font-geist-mono antialiased`}>
         <ModeProvider defaultMode="realistic" storageKey="ui-mode">
           <div
-            className="min-h-screen  text-foreground font-sans flex items-center justify-center p-4 md:p-8"
+            className="min-h-screen  text-foreground font-mono flex items-center justify-center p-4 md:p-8"
             style={{
               backgroundImage: "url(/images/background.jpg)",
               backgroundSize: "cover",

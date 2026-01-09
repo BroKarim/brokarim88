@@ -23,8 +23,20 @@ var work = defineDocs({
     })
   }
 });
+var articles = defineDocs({
+  dir: "content/articles",
+  docs: {
+    schema: frontmatterSchema.extend({
+      tag: z.string().optional(),
+      author: z.string().optional(),
+      media: z.string().optional(),
+      published: z.boolean().optional().default(true)
+    })
+  }
+});
 var source_config_default = defineConfig();
 export {
+  articles,
   source_config_default as default,
   main,
   work
