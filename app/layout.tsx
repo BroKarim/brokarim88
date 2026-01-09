@@ -38,7 +38,7 @@ export default function RootLayout({
             }}
           >
             <TVNoise opacity={1} intensity={0.2} speed={40} />
-            <div className="w-full max-w-225 z-50 aspect-[1.6/1] bg-[#222] relative p-4 rounded-2xl border  overflow-hidden flex shadow-2xl shadow-[inset_0_1px_rgb(255_255_255/0.15)]">{children}</div>
+            <div className="w-full max-w-225 z-50 aspect-[1.6/1] bg-[#222] relative p-4 rounded-2xl border  overflow-hidden flex  shadow-[inset_0_1px_rgb(255_255_255/0.15)]">{children}</div>
           </div>
           <ModeSwitcher />
         </ModeProvider>

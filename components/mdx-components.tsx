@@ -54,8 +54,8 @@ export const mdxComponents = {
   ),
   thead: ({ className, ...props }: React.ComponentProps<"thead">) => <thead className={cn("bg-muted border-b", className)} {...props} />,
   tr: ({ className, ...props }: React.ComponentProps<"tr">) => <tr className={cn("m-0 border-b transition-colors hover:bg-muted/50 last:border-b-0", className)} {...props} />,
-  th: ({ className, ...props }: React.ComponentProps<"th">) => <th className={cn("min-w-[120px] px-4 py-3 text-left font-semibold [[align=center]]:text-center [[align=right]]:text-right", className)} {...props} />,
-  td: ({ className, ...props }: React.ComponentProps<"td">) => <td className={cn("min-w-[120px] px-4 py-3 text-left [[align=center]]:text-center [[align=right]]:text-right", className)} {...props} />,
+  th: ({ className, ...props }: React.ComponentProps<"th">) => <th className={cn("min-w-30 px-4 py-3 text-left font-semibold [[align=center]]:text-center [[align=right]]:text-right", className)} {...props} />,
+  td: ({ className, ...props }: React.ComponentProps<"td">) => <td className={cn("min-w-30 px-4 py-3 text-left [[align=center]]:text-center [[align=right]]:text-right", className)} {...props} />,
   pre: ({ className, children, ...props }: React.ComponentProps<"pre">) => {
     return (
       <pre className={cn("no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0", className)} {...props}>
@@ -79,7 +79,6 @@ export const mdxComponents = {
   code: ({
     className,
     __raw__,
-    __src__,
     __npm__,
     __yarn__,
     __pnpm__,
