@@ -4,7 +4,12 @@ import { z } from "zod";
 export const main = defineDocs({
   dir: "content",
   docs: {
-    schema: frontmatterSchema,
+    schema: frontmatterSchema.extend({
+      tag: z.string().optional(),
+      author: z.string().optional(),
+      media: z.string().optional(),
+      published: z.boolean().optional().default(true),
+    }),
   },
 });
 

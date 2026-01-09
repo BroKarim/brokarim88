@@ -24,7 +24,7 @@ export default async function WorkSlugPage({ params }: { params: Promise<{ slug:
           {media && (
             <div className="sticky top-0 z-10 -mx-4 mb-4 bg-transparent ">
               <div className="px-4">
-                <MediaPreview src={media} className="rounded-xl shadow-2xl" autoPlay controls />
+                <MediaPreview src={media} className="rounded-xl shadow-2xl"/>
               </div>
             </div>
           )}

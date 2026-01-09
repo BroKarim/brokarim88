@@ -24,7 +24,7 @@ export const WORK_PROJECTS: Item[] = [
   },
   {
     id: "3",
-    slug: "og-table",
+    slug: "ogtable",
     title: "OG Table",
     description: "A simple design tool for creating beautiful presentation tables. Customize themes, backgrounds, borders, corners, and export high-resolution images when you’re done.",
     tag: "Tool",
@@ -48,6 +48,6 @@ export const ARTICLES: Item[] = [
 ];
 
 export const SECTIONS = {
-  work: { path: "/work", defaultSlug: "side-school", items: WORK_PROJECTS },
+  work: { path: "/work", defaultSlug: "21oss", items: WORK_PROJECTS },
   ideas: { path: "/ideas", defaultSlug: "design", items: ARTICLES },
 } as const;

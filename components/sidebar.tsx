@@ -89,7 +89,7 @@ export function Sidebar({ items, basePath }: SidebarProps) {
               <h3 className={cn("font-medium text-[13px] transition-colors", currentSlug === item.slug ? "text-white" : "text-white/80 group-hover:text-white")}>{item.title}</h3>
               {item.tag && <span className={cn("text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full", item.tag === "Live" ? "text-emerald-400 bg-emerald-500/10" : "text-white/40 bg-white/5")}>{item.tag}</span>}
             </div>
-            <p className="text-[12px] text-muted-foreground line-clamp-2 leading-relaxed font-light">{item.description}</p>
+            <p className="text-[12px] text-foreground line-clamp-2 leading-relaxed font-light">{item.description}</p>
           </Link>
         ))}
       </div>
