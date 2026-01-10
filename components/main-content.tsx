@@ -6,10 +6,11 @@ import { cn } from "@/lib/utils";
 
 export function MainContent({ children }: { children: React.ReactNode }) {
   const { mode } = useMode();
+  const baseClass = "w-full max-w-225 z-50 aspect-[1.6/1] relative p-4 rounded-2xl overflow-hidden flex";
 
   if (mode === "glassy") {
-    return <GlassEffect className="w-full max-w-225 z-50 aspect-[1.6/1] relative p-4 rounded-2xl overflow-hidden flex">{children}</GlassEffect>;
+    return <GlassEffect className={baseClass}>{children}</GlassEffect>;
   }
 
-  return <div className={cn("w-full max-w-225 z-50 aspect-[1.6/1] bg-[#222] relative p-4 rounded-2xl border overflow-hidden flex shadow-[inset_0_1px_rgb(255_255_255/0.15)]")}>{children}</div>;
+  return <div className={cn(baseClass, "bg-[#222] border shadow-[inset_0_1px_rgb(255_255_255/0.15)]")}>{children}</div>;
 }

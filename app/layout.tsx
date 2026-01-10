@@ -3,11 +3,8 @@ import { Geist_Mono } from "next/font/google";
 import TVNoise from "@/components/tv-noise";
 import { ModeProvider } from "@/context/mode";
 import { ModeSwitcher } from "@/components/mode-switcher";
-import "./globals.css";
-import { cn } from "@/lib/utils";
-import { GlassEffect } from "@/components/glass-effect";
-import { useMode } from "@/context/mode";
 import { MainContent } from "@/components/main-content";
+import "./globals.css";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
