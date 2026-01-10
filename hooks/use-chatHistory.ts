@@ -4,30 +4,45 @@ import { Message } from "@/types/chat";
 const STORAGE_KEY = "portfolio-chat-history";
 
 export function useChatHistory(initialMessage?: Message) {
-  const [messages, setMessages] = useState<Message[]>(() => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // 1. Load data hanya sekali saat pertama kali mount (Client-side)
+  useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
+        } else if (initialMessage) {
+          setMessages([initialMessage]);
+        }
       } catch (e) {
-        console.error("Failed to load chat history:", e);
+        console.error("Parsing error:", e);
+        if (initialMessage) setMessages([initialMessage]);
       }
+    } else if (initialMessage) {
+      setMessages([initialMessage]);
     }
-    return initialMessage ? [initialMessage] : [];
-  });
+    // Tandai bahwa inisialisasi selesai
+    setIsInitialized(true);
+  }, []); // Kosong agar hanya jalan sekali
 
+  // 2. Simpan ke localStorage HANYA jika sudah inisialisasi dan pesan berubah
   useEffect(() => {
-    if (messages.length > 0) {
+    if (isInitialized && messages.length > 0) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
     }
-  }, [messages]);
+  }, [messages, isInitialized]);
 
   const clearHistory = () => {
-    if (confirm("Are you sure you want to clear chat history?")) {
-      setMessages(initialMessage ? [initialMessage] : []);
+    if (confirm("Hapus semua percakapan?")) {
+      const resetMessage = initialMessage ? [initialMessage] : [];
+      setMessages(resetMessage);
       localStorage.removeItem(STORAGE_KEY);
     }
   };
 
-  return { messages, setMessages, clearHistory };
+  return { messages, setMessages, clearHistory, isInitialized };
 }

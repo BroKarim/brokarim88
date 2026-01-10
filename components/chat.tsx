@@ -12,7 +12,7 @@ const WELCOME_MESSAGE = {
 };
 
 export function Chat() {
-  const { messages, setMessages, clearHistory } = useChatHistory(WELCOME_MESSAGE);
+  const { messages, setMessages, clearHistory, isInitialized } = useChatHistory(WELCOME_MESSAGE);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -35,6 +35,10 @@ export function Chat() {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
+
+    if (!isInitialized) {
+      return null; // Atau tampilkan loading spinner kecil
+    }
 
     try {
       const response = await fetch("/api/chat", {

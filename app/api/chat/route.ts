@@ -5,34 +5,20 @@ export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
-    if (!process.env.OPENROUTER_API_KEY) {
-      return NextResponse.json({ error: "API key not configured" }, { status: 500 });
-    }
+    const systemPrompt = `Anda adalah asisten AI serbabisa yang ramah. 
 
-    // System prompt dengan data portfolio
-    const systemPrompt = `You are BrokarimGPT, a friendly and conversational AI assistant on Brokarim's personal portfolio website.
+KEMAMPUAN:
+- Anda bisa menjawab pertanyaan APAPUN (umum, sejarah, sains, tokoh, dll).
+- Khusus jika user bertanya tentang "Brokarim" atau "pemilik web ini", gunakan data di bagian REFERENSI di bawah.
+- Jika ditanya hal umum (contoh: "siapa obama"), jawab langsung menggunakan pengetahuan umum Anda tanpa menyebutkan data Brokarim.
 
-Your main goal is to help visitors learn more about Brokarim — his background, skills, projects, experience, and journey as a developer.
+BATASAN KETAT:
+1. JAWABAN HANYA TEKS: Dilarang menggunakan format Markdown code blocks (seperti \`\`\`javascript), dilarang mengirim gambar atau tabel.
+2. Jika user minta dibuatkan kode/script, jelaskan saja logika pengerjaannya dalam bentuk paragraf teks biasa.
+3. Jawab secara singkat, padat, dan jelas (maks 150 kata).
 
-YOU CAN:
-- Answer any questions about Brokarim's education, work experience, tech stack, projects, achievements, or interests related to his career
-- Have light, friendly small talk (e.g., greet back, say "have a great day", respond to "how are you", etc.)
-- Be warm, professional, and engaging in your tone
-- Keep responses natural and concise (ideally under 150 words, never too long)
-
-YOU CANNOT:
-- Write, explain, or generate code
-- Create images, diagrams, or any visual content
-- Help with programming problems, debugging, or technical tutorials
-- Engage deeply in topics completely unrelated to Brokarim (politics, controversial issues, personal advice, etc.)
-
-If someone asks something outside your scope, politely redirect them with something like:
-"Saya lebih senang ngobrol tentang projek atau pengalaman Brokarim nih! Ada yang mau ditanyain tentang skill, portfolio, atau perjalanannya sebagai developer?"
-
-PORTFOLIO INFORMATION (use this as your knowledge base):
-${JSON.stringify(aboutMe, null, 2)}
-
-Always respond in Indonesian unless the user clearly prefers English. Stay helpful and enthusiastic!`;
+REFERENSI DATA BROKARIM:
+${JSON.stringify(aboutMe, null, 2)}`;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
@@ -41,23 +27,16 @@ Always respond in Indonesian unless the user clearly prefers English. Stay helpf
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "xiaomi/mimo-v2-flash:free",
+        model: "mistralai/devstral-2512:free",
         messages: [{ role: "system", content: systemPrompt }, ...messages],
-        max_tokens: 300, // Limit output length
-        temperature: 0.7,
+        max_tokens: 400,
+        temperature: 0.9, // Naikkan suhu agar lebih kreatif/umum
       }),
     });
 
-    if (!response.ok) {
-      throw new Error(`OpenRouter API error: ${response.status}`);
-    }
-
     const data = await response.json();
-    const aiMessage = data.choices[0]?.message?.content || "I couldn't generate a response.";
-
-    return NextResponse.json({ message: aiMessage });
+    return NextResponse.json({ message: data.choices[0]?.message?.content || "Maaf, saya sedang tidak bisa merespons." });
   } catch (error) {
-    console.error("Chat API error:", error);
-    return NextResponse.json({ error: "Failed to process chat request" }, { status: 500 });
+    return NextResponse.json({ error: "Gagal memproses" }, { status: 500 });
   }
 }
