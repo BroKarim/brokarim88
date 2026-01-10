@@ -3,6 +3,9 @@
 
 @custom-variant dark (&:is(.dark *));
 @custom-variant fixed (&:is(.layout-fixed *));
+@custom-variant realistic (&:is(.realistic *));
+@custom-variant glassy (&:is(.glassy *));
+
 
 :root {
   --font-geist-sans: "Geist", sans-serif;
@@ -405,6 +408,18 @@
   ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
+  }
+  
+  /* Mode-specific styles */
+  html.realistic {
+    /* Default mode - already styled in components */
+  }
+  
+  html.glassy {
+    --glass-opacity: 0.15;
+    --glass-border-opacity: 0.2;
+    --glass-highlight-opacity: 0.3;
+    --glass-blur: 12px;
   }
 }
 

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import TVNoise from "@/components/tv-noise";
 import { ModeProvider } from "@/context/mode";
 import { ModeSwitcher } from "@/components/mode-switcher";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { cn } from "@/lib/utils";
+import { GlassEffect } from "@/components/glass-effect";
+import { useMode } from "@/context/mode";
+import { MainContent } from "@/components/main-content";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -29,8 +28,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={` ${geistMono.variable} font-geist-mono antialiased`}>
         <ModeProvider defaultMode="realistic" storageKey="ui-mode">
-          <div
-            className="min-h-screen  text-foreground font-mono flex items-center justify-center p-4 md:p-8"
+          <main
+            className="min-h-screen text-foreground font-mono flex items-center justify-center p-4 md:p-8"
             style={{
               backgroundImage: "url(/images/background.jpg)",
               backgroundSize: "cover",
@@ -38,8 +37,8 @@ export default function RootLayout({
             }}
           >
             <TVNoise opacity={1} intensity={0.2} speed={40} />
-            <div className="w-full max-w-225 z-50 aspect-[1.6/1] bg-[#222] relative p-4 rounded-2xl border  overflow-hidden flex  shadow-[inset_0_1px_rgb(255_255_255/0.15)]">{children}</div>
-          </div>
+            <MainContent>{children}</MainContent>
+          </main>
           <ModeSwitcher />
         </ModeProvider>
       </body>
