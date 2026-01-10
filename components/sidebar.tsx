@@ -19,8 +19,9 @@ interface SidebarProps {
 export function Sidebar({ items, basePath }: SidebarProps) {
   const pathname = usePathname();
   const currentSlug = pathname.split("/").pop();
+  const isContact = basePath === "/contact";
 
-  const activeTab = pathname.startsWith("/articles") ? "articles" : pathname.startsWith("/chat") ? "chat" : "work";
+  const activeTab = pathname.startsWith("/articles") ? "articles" : pathname.startsWith("/contact") ? "chat" : "work";
 
   const commonClasses =
     "shadow-[0px_32px_64px_-16px_rgba(0,0,0,0.30)] shadow-[0px_16px_32px_-8px_rgba(0,0,0,0.30)] shadow-[0px_8px_16px_-4px_rgba(0,0,0,0.24)] shadow-[0px_4px_8px_-2px_rgba(0,0,0,0.24)] shadow-[0px_-8px_16px_-1px_rgba(0,0,0,0.16)] shadow-[0px_2px_4px_-1px_rgba(0,0,0,0.24)] shadow-[0px_0px_0px_1px_rgba(0,0,0,1.00)] shadow-[inset_0px_0px_0px_1px_rgba(255,255,255,0.08)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.20)] ";
@@ -64,7 +65,7 @@ export function Sidebar({ items, basePath }: SidebarProps) {
               </TabsTrigger>
 
               <TabsTrigger value="chat" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">
-                <Link href="/chat" className="px-4 py-1.5 text-xs font-medium ">
+                <Link href="/contact" className="px-4 py-1.5 text-xs font-medium ">
                   Contact
                 </Link>
               </TabsTrigger>
@@ -74,22 +75,27 @@ export function Sidebar({ items, basePath }: SidebarProps) {
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 font-mono space-y-1 custom-scrollbar">
-        {items.map((item) => (
-          <Link
-            key={item.id}
-            href={`${basePath}/${item.slug}`}
-            className={cn(
-              "w-full text-left p-4 rounded-2xl transition-all duration-300 group relative block",
-              currentSlug === item.slug ? "bg-[#252525] shadow-lg shadow-[inset_0_1px_rgb(255_255_255/0.15)]" : "hover:bg-white/5 hover:shadow-[inset_0_1px_rgb(255_255_255/0.15)]"
-            )}
-          >
-            <div className="flex items-center justify-between mb-1.5">
-              <h3 className={cn("font-medium text-[13px] transition-colors", currentSlug === item.slug ? "text-white" : "text-white/80 group-hover:text-white")}>{item.title}</h3>
-              {item.tag && <span className={cn("text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full", item.tag === "Live" ? "text-emerald-400 bg-emerald-500/10" : "text-white/40 bg-white/5")}>{item.tag}</span>}
-            </div>
-            <p className="text-[12px] text-foreground line-clamp-2 leading-relaxed font-light">{item.description}</p>
-          </Link>
-        ))}
+        {items.map((item) => {
+          const isActive = basePath === "/contact" ? item.id === items[0]?.id : currentSlug === item.slug;
+
+          return (
+            <Link
+              key={item.id}
+              href={item.href ?? `${basePath}/${item.slug}`}
+              target={item.href ? "_blank" : undefined}
+              className={cn(
+                "w-full text-left p-4 rounded-2xl transition-all duration-300 group relative block",
+                isActive ? "bg-[#252525] shadow-lg shadow-[inset_0_1px_rgb(255_255_255/0.15)]" : "hover:bg-white/5 hover:shadow-[inset_0_1px_rgb(255_255_255/0.15)]"
+              )}
+            >
+              <div className="flex items-center justify-between mb-1.5">
+                <h3 className={cn("font-medium text-[13px] transition-colors", currentSlug === item.slug ? "text-white" : "text-white/80 group-hover:text-white")}>{item.title}</h3>
+                {item.tag && <span className={cn("text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full", item.tag === "Live" ? "text-emerald-400 bg-emerald-500/10" : "text-white/40 bg-white/5")}>{item.tag}</span>}
+              </div>
+              <p className="text-[12px] text-foreground line-clamp-2 leading-relaxed font-light">{item.description}</p>
+            </Link>
+          );
+        })}
       </div>
     </aside>
   );

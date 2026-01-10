@@ -1,0 +1,63 @@
+{
+  "name": "Your Name",
+  "role": "Full Stack Developer",
+  "location": "Banda Aceh, Indonesia",
+  "bio": "Passionate developer with expertise in modern web technologies. I love building elegant solutions to complex problems.",
+  
+  "skills": {
+    "frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    "backend": ["Node.js", "Express", "Python", "FastAPI"],
+    "database": ["PostgreSQL", "MongoDB", "Redis"],
+    "tools": ["Git", "Docker", "Vercel", "AWS"]
+  },
+
+  "experience": [
+    {
+      "company": "Company Name",
+      "position": "Senior Developer",
+      "period": "2022 - Present",
+      "description": "Led development of multiple high-impact projects using Next.js and TypeScript"
+    },
+    {
+      "company": "Previous Company",
+      "position": "Full Stack Developer",
+      "period": "2020 - 2022",
+      "description": "Built and maintained web applications serving thousands of users"
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Project Alpha",
+      "description": "A modern web application built with Next.js and AI integration",
+      "technologies": ["Next.js", "TypeScript", "OpenAI API"],
+      "url": "https://github.com/yourusername/project-alpha"
+    },
+    {
+      "name": "Project Beta",
+      "description": "Real-time collaboration tool with WebSocket support",
+      "technologies": ["React", "Node.js", "Socket.io"],
+      "url": "https://github.com/yourusername/project-beta"
+    }
+  ],
+
+  "education": {
+    "degree": "Bachelor of Computer Science",
+    "institution": "University Name",
+    "year": "2020"
+  },
+
+  "contact": {
+    "email": "your.email@example.com",
+    "github": "https://github.com/yourusername",
+    "linkedin": "https://linkedin.com/in/yourusername",
+    "twitter": "https://twitter.com/yourusername"
+  },
+
+  "interests": [
+    "Open Source Contribution",
+    "Machine Learning",
+    "UI/UX Design",
+    "Technical Writing"
+  ]
+}

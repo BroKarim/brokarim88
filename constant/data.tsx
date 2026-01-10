@@ -4,6 +4,7 @@ export interface Item {
   title: string;
   description: string;
   tag?: string;
+  href?: string;
 }
 
 export const WORK_PROJECTS: Item[] = [
@@ -41,7 +42,39 @@ export const ARTICLES: Item[] = [
   },
 ];
 
+export const CONTACT_ITEMS: Item[] = [
+  {
+    id: "chat",
+    slug: "",
+    title: "BrokarimGPT",
+    description: "Chat directly with my personal AI assistant.",
+  },
+  {
+    id: "twitter",
+    slug: "",
+    title: "Twitter / X",
+    description: "Thoughts, updates, and random experiments.",
+    href: "https://x.com/yourhandle",
+  },
+  {
+    id: "threads",
+    slug: "",
+    title: "Threads",
+    description: "Casual posts and side ideas.",
+    href: "https://threads.net/@yourhandle",
+  },
+  {
+    id: "email",
+    slug: "",
+    title: "Email",
+    description: "Reach me directly for collaborations or work.",
+    href: "mailto:you@email.com",
+  },
+];
+
+
 export const SECTIONS = {
   work: { path: "/work", defaultSlug: "21oss", items: WORK_PROJECTS },
   articles: { path: "/articles", defaultSlug: "blurry-placeholders", items: ARTICLES },
+  contact: { path: "/contact", defaultSlug: "", items: CONTACT_ITEMS },
 } as const;

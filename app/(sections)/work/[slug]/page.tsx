@@ -19,7 +19,7 @@ export default async function WorkSlugPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <Sidebar items={SECTIONS.work.items} basePath="/work" />
-      <main className="flex-1  px-4 overflow-y-scroll">
+      <main className="flex-1 px-4 overflow-y-scroll">
         <div className="max-w-xl mx-auto">
           {media && (
             <div className="sticky top-0 z-10 -mx-4 mb-4 bg-transparent ">
