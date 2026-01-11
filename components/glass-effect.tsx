@@ -18,7 +18,7 @@ export const GlassEffect: React.FC<GlassEffectProps> = ({ children, className = 
   };
 
   return (
-    <div className={cn("relative transition-all duration-700 backdrop-blur-lg", className)} style={glassStyle}>
+    <div className={cn("relative transition-all border-none duration-700 backdrop-blur-lg ", className)} style={glassStyle}>
       {children}
     </div>
   );
