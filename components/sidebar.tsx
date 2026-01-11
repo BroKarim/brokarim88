@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Info } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Item } from "@/constant/data";
 import { useMode } from "@/context/mode";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface SidebarProps {
@@ -48,7 +46,8 @@ export function Sidebar({ items, basePath }: SidebarProps) {
 
       {/* Navigation Tabs */}
       <div className="px-6 pb-6">
-        <div className={cn("flex items-center justify-between rounded-full py-1 px-2", mode === "glassy" ? "bg-white/10 backdrop-blur-sm" : "bg-[#222]")}>
+        <div className="flex items-center justify-between rounded-full py-1 px-2 transition-all duration-700" style={{ backgroundColor: "var(--sidebar-tab-bg)", backdropFilter: "blur(8px)" }}>
+          {/* <div className={cn("flex items-center justify-between rounded-full py-1 px-2", mode === "glassy" ? "bg-white/10 backdrop-blur-sm" : "bg-[#222]")}> */}
           <Tabs value={activeTab} className="w-full">
             <TabsList className={cn(commonClasses, "h-10 rounded-[99px] gap-1 w-full justify-center items-center inline-flex overflow-hidden", mode === "glassy" ? "bg-white/20" : "bg-[#131316]")}>
               <TabsTrigger value="work" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">

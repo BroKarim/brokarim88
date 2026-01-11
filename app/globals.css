@@ -7,6 +7,7 @@
 @custom-variant glassy (&:is(.glassy *));
 
 
+
 :root {
   --font-geist-sans: "Geist", sans-serif;
   --font-geist-mono: "Geist Mono", monospace;
@@ -58,6 +59,18 @@
   --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
   --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+
+:root.realistic {
+  --sidebar-tab-bg: #222;
+  --sidebar-list-bg: #131316;
+  --sidebar-item-active: #252525;
+}
+
+:root.glassy {
+  --sidebar-tab-bg: rgba(255, 255, 255, 0.1);
+  --sidebar-list-bg: rgba(255, 255, 255, 0.2);
+  --sidebar-item-active: rgba(255, 255, 255, 0.2);
 }
 
 @theme inline {
