@@ -28,7 +28,7 @@ export function ModeSwitcher() {
                 className={`group relative overflow-hidden rounded-lg border-2 transition-all ${mode === "realistic" ? "border-primary ring-2 ring-primary/20" : "border-transparent hover:border-muted-foreground/20"}`}
               >
                 <div className="aspect-video relative">
-                  <Image src="/placeholder.svg" alt="Realistic mode" fill className="object-cover" />
+                  <Image src="https://res.cloudinary.com/dctl5pihh/image/upload/v1768100397/default_l46w8l.png" alt="Realistic mode" fill className="object-cover" />
                 </div>
                 <div className="p-2 text-center">
                   <p className="text-xs font-medium">Realistic</p>
@@ -41,7 +41,7 @@ export function ModeSwitcher() {
                 className={`group relative overflow-hidden rounded-lg border-2 transition-all ${mode === "glassy" ? "border-primary ring-2 ring-primary/20" : "border-transparent hover:border-muted-foreground/20"}`}
               >
                 <div className="aspect-video relative">
-                  <Image src="/placeholder.svg" alt="Glassy mode" fill className="object-cover" />
+                  <Image src="https://res.cloudinary.com/dctl5pihh/image/upload/v1768100397/glassy_p2e0za.png" alt="Glassy mode" fill className="object-cover" />
                 </div>
                 <div className="p-2 text-center">
                   <p className="text-xs font-medium">Glassy</p>

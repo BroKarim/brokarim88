@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { ChatMessage } from "./chat/chat-message";
 import { useChatHistory } from "@/hooks/use-chatHistory";
+import { useMode } from "@/context/mode";
 
 const WELCOME_MESSAGE = {
   role: "assistant" as const,
@@ -12,12 +13,17 @@ const WELCOME_MESSAGE = {
 };
 
 export function Chat() {
+  const { mode } = useMode();
   const { messages, setMessages, clearHistory, isInitialized } = useChatHistory(WELCOME_MESSAGE);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto scroll ke bawah
+  const inputClasses =
+    mode === "glassy"
+      ? "w-full rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 pr-14 text-white placeholder:text-white/50 outline-none focus:ring-2 focus:ring-primary/50 transition-all disabled:opacity-50"
+      : "w-full rounded-full bg-[#2a2a2a] px-6 py-3 pr-14 text-white placeholder:text-white/50 outline-none focus:ring-2 focus:ring-primary/50 transition-all disabled:opacity-50";
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -37,7 +43,7 @@ export function Chat() {
     setIsLoading(true);
 
     if (!isInitialized) {
-      return null; // Atau tampilkan loading spinner kecil
+      return null;
     }
 
     try {
@@ -107,17 +113,9 @@ export function Chat() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Sticky Bottom */}
       <div className="sticky bottom-0 p-2">
         <form onSubmit={handleSubmit} className="relative max-w-3xl mx-auto">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask me anything..."
-            disabled={isLoading}
-            className="w-full rounded-full bg-[#2a2a2a] px-6 py-3 pr-14 text-white placeholder:text-white/50 outline-none focus:ring-2 focus:ring-primary/50 transition-all disabled:opacity-50"
-          />
+          <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask me anything..." disabled={isLoading} className={inputClasses} />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
@@ -128,5 +126,7 @@ export function Chat() {
         </form>
       </div>
     </div>
+    // <ChatWrapper {...wrapperProps}>
+    // </ChatWrapper>
   );
 }

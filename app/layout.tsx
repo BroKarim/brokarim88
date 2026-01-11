@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import TVNoise from "@/components/tv-noise";
 import { ModeProvider } from "@/context/mode";
-import { ModeSwitcher } from "@/components/mode-switcher";
-import { MainContent } from "@/components/main-content";
+import { ModeSwitcher } from "@/components/mode/mode-switcher";
+import { ModeWrapper } from "@/components/mode/mode-wrapper";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -34,7 +34,7 @@ export default function RootLayout({
             }}
           >
             <TVNoise opacity={1} intensity={0.2} speed={40} />
-            <MainContent>{children}</MainContent>
+            <ModeWrapper>{children}</ModeWrapper>
           </main>
           <ModeSwitcher />
         </ModeProvider>
