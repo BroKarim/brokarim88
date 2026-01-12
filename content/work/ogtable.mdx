@@ -3,97 +3,94 @@ title: OG Table
 media: https://res.cloudinary.com/dctl5pihh/video/upload/v1767924258/og-table-porto_pmr1ab.mov
 ---
 
-OG Table is a small project with a big place in my journey.
+OG Table is a small project — but it started from a **big technical challenge**.
 
-This was the **first project** that pulled me into the world of *micro-SaaS*, *open source*, and building tools for real people — not just finishing assignments or tutorials.
+This project began as a **clone of a popular open-source repository**:
+https://github.com/raycast/ray-so
 
-## Where It Started
+`ray.so` is a polished product by **Raycast**, a well-known company focused on developer tools — specifically, generating beautiful **code snippet images**.
 
-I remember this very clearly.
+I chose this repo not just because the UI matched what I wanted, but because I was curious:
 
-I was deep into YouTube, watching Marc Lou’s content — shipping fast, building in public, tiny tools with real users.  
-That was the moment when building software stopped feeling academic and started feeling… *alive*.
+> *How does a real company structure, design, and ship a product-quality open-source project?*
 
-Around the same time, I was working on a slide deck.  
-Everything looked clean and modern — nice font, subtle gradients, good spacing.
+The challenge wasn’t cloning it.  
+The challenge was **changing its core purpose entirely**.
+
+Instead of code snippets, I wanted the output to be **dynamic, styled tables**.
+
+And that changed everything.
+
+## Why Tables?
+
+This came from a very real, very personal problem.
+
+I was working on a slide deck.  
+The typography looked great.  
+The layout felt modern.
 
 Then I added a table.
 
-And it completely ruined the slide.
+It instantly broke the entire design.
 
-It looked like it came straight out of an early-2000s spreadsheet.  
-No style. No personality. Just pain.
+It looked like something from an early-2000s spreadsheet — rigid, lifeless, and completely out of place.
 
-That’s when the idea hit me:
+That moment sparked a simple but frustrating question:
 
-> “Why does everything else look modern… except tables?”
+> “Why does everything look modern… except tables?”
 
-## The First Real Idea
+## Reworking a Solid Foundation
 
-OG Table came from a **purely personal problem**.
+OG Table wasn’t built from zero.
 
-I didn’t start with a business plan.  
-I didn’t start with metrics.  
-I just wanted tables that *didn’t embarrass my slides*.
+It was built by **reworking a clean, mature codebase** that was originally designed for something else entirely.
 
-So I built a tool where you could:
+I had to:
 
-- Pick a theme  
-- Customize borders and corners  
-- Adjust spacing and background  
-- Export the result as an image  
-- Move on with your life  
+- Understand how ray.so rendered and exported code snippets  
+- Identify which abstractions could be reused  
+- Replace static code blocks with **fully customizable table structures**  
+- Preserve the smooth UX and export flow — without breaking the architecture  
 
-Simple. Useful. Done.
+The UI stayed familiar.  
+The mental model changed completely.
 
-At the time, that felt revolutionary to me.
+That’s where the real difficulty was.
 
-## Learning the Hard Way (and the Best Way)
+## Learning by Reading Real Code
 
-Here’s the fun part.
+This was the first time I truly experienced how valuable **reading great code** can be.
 
-I didn’t build OG Table from scratch.
+I spent almost **a full week** doing very little “building” — just reading.
 
-I **cloned the ray.so repository** by Raycast:
-https://github.com/raycast/ray-so
+Line by line.  
+File by file.
 
-And wow.
+Trying to understand *why* things were written the way they were.
 
-That repo was *clean*.  
-Painfully clean.
+That process taught me more than any tutorial:
 
-Every file made sense.  
-Every abstraction felt intentional.  
-Nothing was rushed.
+- How real projects are structured  
+- How abstractions stay simple but flexible  
+- How restraint is often a sign of good engineering  
 
-I remember spending almost **a full week** just reading the code — slowly, line by line — trying to understand *why* things were structured the way they were.
-
+It was slow.  
 It was frustrating.  
-It was exhausting.  
-And it was one of the most valuable learning experiences I’ve had.
+And it reshaped how I approach code to this day.
 
-That week forced me to:
+## Why This Project Matters
 
-- Get comfortable reading other people’s code  
-- Understand real-world project structure  
-- Learn that good code is often quiet, boring, and intentional  
+OG Table isn’t the biggest project I’ve shipped.
 
-That pain trained me more than any tutorial ever did.
+But it was the project that made everything feel *real*.
 
-## Why This Project Matters to Me
+It showed me that:
+- Small tools can still be meaningful  
+- You don’t need a huge idea to ship something useful  
+- Open source is one of the fastest ways to level up  
+- Understanding existing systems is just as important as creating new ones  
 
-OG Table might not be the biggest or most complex project I’ve built — but it’s the one that **changed how I think**.
-
-It taught me that:
-
-- Small tools can still matter  
-- Ideas don’t have to be grand to be useful  
-- Open source is an incredible way to learn  
-- Reading great code is just as important as writing your own  
-
-Most importantly, it showed me that I *could* build something end-to-end — and that people might actually want to use it.
-
-That realization stuck with me.
+Most importantly, it gave me confidence that I could take a real product, understand it, and bend it toward a completely new goal.
 
 ## Tech Stack (at a Glance)
 
@@ -108,4 +105,4 @@ That realization stuck with me.
 OG Table was the beginning.
 
 Not because it was perfect —  
-but because it made me believe that building and shipping tools was something I could actually do.
+but because it proved that I could learn from real-world code, reshape it, and ship something meaningful.

@@ -30,6 +30,14 @@ export const WORK_PROJECTS: Item[] = [
     description: "A simple design tool for creating beautiful presentation tables. Customize themes, backgrounds, borders, corners, and export high-resolution images when you’re done.",
     tag: "Tool",
   },
+  {
+    id: "4",
+    slug: "github",
+    title: "Side Quests",
+    description:
+      "A collection of experiments, cloned repos, UI explorations, and half-serious ideas that shaped my programming journey.",
+    tag: "Side Quest",
+  },
 ];
 
 
