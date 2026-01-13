@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
-import { ChatMessage } from "./chat/chat-message";
+import { ChatMessage } from "@/components/chat/chat-message";
 import { useChatHistory } from "@/hooks/use-chatHistory";
 import { useMode } from "@/context/mode";
 

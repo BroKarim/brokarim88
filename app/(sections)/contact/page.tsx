@@ -1,6 +1,6 @@
 import { Sidebar } from "@/components/sidebar";
 import { SECTIONS } from "@/constant/data";
-import { Chat } from "@/components/chat";
+import { Chat } from "@/components/chat/chat";
 export default function ContactPage() {
   return (
     <>

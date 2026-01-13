@@ -2,11 +2,12 @@ export const siteConfig = {
   name: "Brokarim",
   description: "--------------------------------",
   url: "https://brokarim.com",
-  ogImage: "https://brokarim.com/og-image.jpg",
+  ogImage: "https://brokarim.com/og.png",
+  alphabet: "abcdefghijklmnopqrstuvwxyz",
   links: {
-    twitter: "https://twitter.com/brokarim",
-    github: "https://github.com/brokarim",
-    thread: "https://github.com/brokarim",
+    twitter: "https://x.com/BroKariim",
+    github: "https://github.com/BroKarim",
+    thread: "https://www.threads.com/@brokariim",
   },
 };
 

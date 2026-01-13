@@ -12,52 +12,60 @@
   },
 
   "experience": [
-    {
-      "company": "Company Name",
-      "position": "Senior Developer",
-      "period": "2022 - Present",
-      "description": "Led development of multiple high-impact projects using Next.js and TypeScript"
-    },
-    {
-      "company": "Previous Company",
-      "position": "Full Stack Developer",
-      "period": "2020 - 2022",
-      "description": "Built and maintained web applications serving thousands of users"
-    }
-  ],
+  {
+    "company": "BAPPEDA Banda Aceh",
+    "position": "Web Developer Intern",
+    "period": "2024",
+    "description": "Built an interactive 2024 urban development allocation map for Banda Aceh using Next.js and Leaflet, focusing on geospatial visualization and data-driven planning."
+  }
+],
 
   "projects": [
     {
-      "name": "Project Alpha",
-      "description": "A modern web application built with Next.js and AI integration",
-      "technologies": ["Next.js", "TypeScript", "OpenAI API"],
-      "url": "https://github.com/yourusername/project-alpha"
+      "name": "21OSS",
+      "description": "An open-source resource hub that curates templates, components, tools, and assets for developers and creators. Built to help ship faster with practical, high-quality open-source resources.",
+      "technologies": ["Next.js 15", "Supabase", "Better Auth", "AWS S3", "Prisma"],
+      "url": "https://github.com/BroKarim"
     },
     {
-      "name": "Project Beta",
-      "description": "Real-time collaboration tool with WebSocket support",
-      "technologies": ["React", "Node.js", "Socket.io"],
-      "url": "https://github.com/yourusername/project-beta"
+      "name": "OG Table",
+      "description": "A tool for generating beautiful, modern table images for presentations and content. Built by reworking Raycast's ray.so codebase to create dynamic, styled tables instead of code snippets.",
+      "technologies": ["Next.js", "Radix UI", "Tailwind CSS", "Jotai", "Framer Motion", "html-to-image"],
+      "url": "https://github.com/BroKarim"
+    },
+    {
+      "name": "Zona Petik",
+      "description": "A data-driven agricultural decision support system that analyzes weather data and forecasts rainfall using Holt-Winters to generate dynamic planting calendars for farmers.",
+      "technologies": ["Python", "Holt-Winters Forecasting", "BMKG API", "NASA Climate Data"],
+      "url": "https://github.com/BroKarim"
+    },
+    {
+      "name": "Headshota",
+      "description": "An open-source web app for generating natural, professional-looking AI headshots for social media from a single photo. Currently paused due to cost optimization work.",
+      "technologies": ["Next.js", "Better Auth", "AWS S3", "Supabase", "Prisma", "AI Image Generation"],
+      "url": "https://github.com/BroKarim",
+      "status": "paused"
     }
   ],
 
   "education": {
     "degree": "Bachelor of Computer Science",
-    "institution": "University Name",
-    "year": "2020"
+    "institution": "Syiah Kuala University",
+    "year": "2021"
   },
 
   "contact": {
-    "email": "your.email@example.com",
+    "email": "https://x.com/BroKariim",
     "github": "https://github.com/yourusername",
-    "linkedin": "https://linkedin.com/in/yourusername",
-    "twitter": "https://twitter.com/yourusername"
+    "thread": "https://www.threads.com/@brokariim",
+    "twitter": "https://x.com/BroKariim"
   },
 
   "interests": [
     "Open Source Contribution",
     "Machine Learning",
     "UI/UX Design",
+    "Yapping",
     "Technical Writing"
   ]
 }

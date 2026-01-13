@@ -62,21 +62,21 @@ export const CONTACT_ITEMS: Item[] = [
     slug: "",
     title: "Twitter / X",
     description: "Thoughts, updates, and random experiments.",
-    href: "https://x.com/yourhandle",
+    href: "https://x.com/BroKariim",
   },
   {
     id: "threads",
     slug: "",
     title: "Threads",
     description: "Casual posts and side ideas.",
-    href: "https://threads.net/@yourhandle",
+    href: "https://www.threads.com/@brokariim",
   },
   {
     id: "email",
     slug: "",
     title: "Email",
     description: "Reach me directly for collaborations or work.",
-    href: "mailto:you@email.com",
+    href: "brokariim@gmail.com",
   },
 ];
 
