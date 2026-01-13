@@ -30,47 +30,46 @@ export function Sidebar({ items, basePath }: SidebarProps) {
   return (
     <aside className={cn(commonClasses, "w-[450px] border-r flex flex-col h-full rounded-2xl", sidebarClasses)}>
       {/* Profile Header */}
-      <div className="p-8 pb-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Avatar className="size-12 border border-white/10 bg-muted/20">
-            <AvatarImage src="https://res.cloudinary.com/dctl5pihh/image/upload/v1768099687/brokarim-orange_zcfnek.png" alt="Ben Issen" />
-            <AvatarFallback>DZ</AvatarFallback>
-          </Avatar>
+      <div className="p-4 md:p-8 pb-4 md:pb-6 flex items-center justify-between">
+    <div className="flex items-center gap-3">
+      <Avatar className="size-10 md:size-12 border border-white/10 bg-muted/20">
+        <AvatarImage src="https://res.cloudinary.com/dctl5pihh/image/upload/v1768099687/brokarim-orange_zcfnek.png" alt="Ben Issen" />
+        <AvatarFallback>DZ</AvatarFallback>
+      </Avatar>
 
-          <div className="space-y-0.5">
-            <h2 className="font-semibold text-sm tracking-tight text-white">Brokarim</h2>
-            <p className="text-[11px]">I design and build tools people love</p>
-          </div>
-        </div>
+      <div className="space-y-0.5">
+        <h2 className="font-semibold text-sm tracking-tight text-white">Brokarim</h2>
+        <p className="text-[11px]">I design and build tools people love</p>
       </div>
+    </div>
+  </div>
 
       {/* Navigation Tabs */}
-      <div className="px-6 pb-6">
-        <div className="flex items-center justify-between rounded-full py-1 px-2 transition-all duration-700" style={{ backgroundColor: "var(--sidebar-tab-bg)", backdropFilter: "blur(8px)" }}>
-          {/* <div className={cn("flex items-center justify-between rounded-full py-1 px-2", mode === "glassy" ? "bg-white/10 backdrop-blur-sm" : "bg-[#222]")}> */}
-          <Tabs value={activeTab} className="w-full">
-            <TabsList className={cn(commonClasses, "h-10 rounded-[99px] gap-1 w-full justify-center items-center inline-flex overflow-hidden", mode === "glassy" ? "bg-white/20" : "bg-[#131316]")}>
-              <TabsTrigger value="work" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">
-                <Link href="/work" className="px-4 py-1.5 text-xs font-medium ">
-                  Work
-                </Link>
-              </TabsTrigger>
+   <div className="px-4 md:px-6 pb-4 md:pb-6">
+    <div className="flex items-center justify-between rounded-full py-1 px-2 transition-all duration-700" style={{ backgroundColor: "var(--sidebar-tab-bg)", backdropFilter: "blur(8px)" }}>
+      <Tabs value={activeTab} className="w-full">
+        <TabsList className={cn(commonClasses, "h-10 rounded-[99px] gap-1 w-full justify-center items-center inline-flex overflow-hidden", mode === "glassy" ? "bg-white/20" : "bg-[#131316]")}>
+          <TabsTrigger value="work" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">
+            <Link href="/work" className="px-2 md:px-4 py-1.5 text-xs font-medium">
+              Work
+            </Link>
+          </TabsTrigger>
 
-              <TabsTrigger value="articles" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">
-                <Link href="/articles" className="px-4 py-1.5 text-xs font-medium ">
-                  Articles
-                </Link>
-              </TabsTrigger>
+          <TabsTrigger value="articles" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">
+            <Link href="/articles" className="px-2 md:px-4 py-1.5 text-xs font-medium">
+              Articles
+            </Link>
+          </TabsTrigger>
 
-              <TabsTrigger value="chat" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">
-                <Link href="/contact" className="px-4 py-1.5 text-xs font-medium ">
-                  Contact
-                </Link>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-      </div>
+          <TabsTrigger value="chat" asChild className="rounded-full w-full data-[state=active]:bg-[#7c5aff] data-[state=active]:shadow-[inset_0_1px_rgb(255_255_255/0.15)] transition-all">
+            <Link href="/contact" className="px-2 md:px-4 py-1.5 text-xs font-medium">
+              Contact
+            </Link>
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+    </div>
+  </div>
 
       <div className="flex-1 overflow-y-auto px-4 font-mono space-y-1 custom-scrollbar">
         {items.map((item) => {
