@@ -18,5 +18,15 @@
     "type": "video",
     "placeholder": "https://res.cloudinary.com/dctl5pihh/video/upload/w_20,q_30,e_blur:200/so_0/v1767948527/chainsaw-man-pixel-art.1920x1080_jrhgno.jpg",
     "hash": "23689c30408cf6cc2fbe0d550c2ea0448ced9cf5da75737a222869e58df1fc53"
+  },
+  "https://res.cloudinary.com/dctl5pihh/image/upload/v1768203034/gh-profile_teki12.png": {
+    "type": "image",
+    "placeholder": "https://res.cloudinary.com/dctl5pihh/image/upload/w_20,q_30,e_blur:200/v1768203034/gh-profile_teki12.png",
+    "hash": "dd213c98f6df2e30969360712ef1887852cb819742d732c14d2455892a8d83fe"
+  },
+  "https://res.cloudinary.com/dctl5pihh/video/upload/v1772252486/signature_xyhfvx.mov": {
+    "type": "video",
+    "placeholder": "https://res.cloudinary.com/dctl5pihh/video/upload/w_20,q_30,e_blur:200/so_0/v1772252486/signature_xyhfvx.jpg",
+    "hash": "aed413b97cd818a27609b4af529f9d2dc8da43c0d52934262c2638f8af730611"
   }
 }

@@ -11,7 +11,6 @@ interface GlassEffectProps {
 export const GlassEffect: React.FC<GlassEffectProps> = ({ children, className = "", style = {} }) => {
   const glassStyle = {
     boxShadow: "0 10px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 255, 255, 0.1)",
-    // background: "rgba(255, 255, 255, 0.15)",
     border: "1px solid rgba(255, 255, 255, 0.2)",
     transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 2.2)",
     ...style,

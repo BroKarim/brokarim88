@@ -4,30 +4,24 @@ import { Message } from "@/types/chat";
 const STORAGE_KEY = "portfolio-chat-history";
 
 export function useChatHistory(initialMessage?: Message) {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  // 1. Load data hanya sekali saat pertama kali mount (Client-side)
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window === "undefined") {
+      return initialMessage ? [initialMessage] : [];
+    }
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          setMessages(parsed);
-        } else if (initialMessage) {
-          setMessages([initialMessage]);
+          return parsed;
         }
-      } catch (e) {
-        console.error("Parsing error:", e);
-        if (initialMessage) setMessages([initialMessage]);
       }
-    } else if (initialMessage) {
-      setMessages([initialMessage]);
+    } catch (e) {
+      console.error("Parsing error:", e);
     }
-    // Tandai bahwa inisialisasi selesai
-    setIsInitialized(true);
-  }, []); // Kosong agar hanya jalan sekali
+    return initialMessage ? [initialMessage] : [];
+  });
+  const [isInitialized] = useState(() => typeof window !== "undefined");
 
   // 2. Simpan ke localStorage HANYA jika sudah inisialisasi dan pesan berubah
   useEffect(() => {

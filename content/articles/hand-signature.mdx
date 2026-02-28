@@ -1,0 +1,183 @@
+---
+title: Building a Motion-Ready Hand-Drawn Signature Generator (Mask-Based Animation)
+media: https://res.cloudinary.com/dctl5pihh/video/upload/v1772252486/signature_xyhfvx.mov
+---
+
+This project started in the most unplanned way possible.
+
+I wasn’t trying to build a signature tool.  
+I was just experimenting with motion and SVG masking.
+
+One small prototype turned into:
+
+> “Wait… this could actually be a nice exportable signature component.”
+
+And that’s how the Hand-Drawn Signature project was born.
+
+Not as a SaaS idea.  
+Not as a startup experiment.  
+Just pure vibe coding.
+
+---
+
+## The Core Idea
+
+Most “signature generators” stop at exporting an image.
+
+I wanted something different:
+
+- Motion-ready  
+- React-ready  
+- Drop-in component  
+- Clean SVG output  
+
+Instead of exporting a PNG, this tool exports a usable `tsx` component you can drop into a portfolio, landing page, or personal site.
+
+The signature isn’t just static.
+
+It animates.
+
+---
+
+## Two Approaches to Signature Animation
+
+There are generally two ways to animate handwriting in SVG:
+
+### 1. Stroke Animation (`pathLength` trick)
+
+You animate strokes from `0 → 1` using `pathLength`.
+
+This simulates the drawing process directly.
+
+It’s great for line-based signatures.
+
+---
+
+### 2. Mask-Based Reveal (What I Used)
+
+Instead of animating strokes, I animate visibility.
+
+The idea:
+
+- Render full SVG paths
+- Apply a `<mask>`
+- Animate a rectangle inside the mask
+- Reveal the signature progressively
+
+This creates a smooth “written from left to right” illusion without relying on stroke-only paths.
+
+It works beautifully for:
+- Filled glyphs
+- Signature fonts
+- More complex shapes
+
+And it keeps the output clean.
+
+---
+
+## How the Animation Works
+
+Under the hood:
+
+- SVG paths are rendered with sequential timing
+- A `motion.rect` animates from width `0 → full width`
+- Custom easing makes it feel natural
+- Optional ink-indent layer adds depth for a more realistic fill effect
+
+Because the animation is mask-based, we’re not manipulating dozens of stroke properties.
+
+We’re simply controlling visibility.
+
+Simple idea. Powerful result.
+
+---
+
+## The Technical Stack
+
+The project is built using:
+
+- React
+- SVG
+- `motion` (for animation control)
+- Canvas API (for drawing mode)
+- Dynamic export logic (`lib/signature/export.ts`)
+
+The export function generates:
+
+- A clean `motion.svg`
+- Mask definition
+- Properly scoped IDs
+- Production-ready component structure
+
+No extra junk. No runtime editor dependency.
+
+Just copy → paste → done.
+
+---
+
+## Draw or Type
+
+There are two input modes:
+
+### ✍️ Draw Mode
+
+Users draw directly on a canvas.  
+The tool converts strokes into SVG paths.
+
+### ⌨️ Type Mode
+
+Users type their name using a signature-style font.  
+The glyphs are converted into SVG paths and masked for animation.
+
+Both end up as motion-ready components.
+
+---
+
+## Why Export Code Instead of Media?
+
+Because:
+
+- Video exports are heavy.
+- GIFs are low quality.
+- PNGs are static.
+
+A React component is:
+
+- Lightweight
+- Resolution independent
+- Fully controllable
+- Replayable
+- Theme-aware
+
+It becomes part of your UI system, not just decoration.
+
+---
+
+## What’s Next
+
+This is still a fun project.
+
+Upcoming ideas:
+
+- Signature template gallery
+- Public showcase page
+- Export to MP4 / PNG / SVG
+- Font presets and sizing controls
+- Multi-line signature support
+- Custom easing presets
+
+---
+
+## Final Thoughts
+
+This wasn’t meant to be a product.
+
+It started as a motion experiment.
+
+But sometimes the best projects come from curiosity, not planning.
+
+And honestly?
+
+There’s something satisfying about seeing your signature animate itself into existence on your own website.
+
+That just hits different.

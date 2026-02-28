@@ -48,6 +48,12 @@ export const ARTICLES: Item[] = [
     title: "How to Generate Blurry Placeholders for Cloud Images (Automatically)",
     description: "Building an automated pipeline for instant visual feedback using tiny blurred placeholders.",
   },
+  {
+    id: "2",
+    slug: "hand-signature",
+    title: "Building a Motion-Ready Hand-Drawn Signature Generator (Mask-Based Animation)",
+    description: "Turning a signature into a motion-ready React component using SVG masks and smooth reveal timing.",
+  },
 ];
 
 export const CONTACT_ITEMS: Item[] = [
