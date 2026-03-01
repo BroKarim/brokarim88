@@ -55,7 +55,7 @@ export default function RootLayout({
   const BACKGROUND_OPTIMIZED = "https://res.cloudinary.com/dctl5pihh/image/upload/f_auto,q_auto,w_1920/v1768287477/background_valoru.jpg";
   return (
     <html lang="en">
-      <body className={` ${geistMono.variable} font-geist-mono antialiased`}>
+      <body className={` ${geistMono.variable} font-geist-mono root antialiased`}>
         <ModeProvider defaultMode="realistic" storageKey="ui-mode">
           <BackgroundLoader placeholder={BACKGROUND_PLACEHOLDER} optimized={BACKGROUND_OPTIMIZED} className="min-h-screen text-foreground font-mono flex flex-col md:flex-row items-center justify-center p-2 md:p-8">
             <TVNoise opacity={1} intensity={0.2} speed={40} />

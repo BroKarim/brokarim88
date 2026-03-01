@@ -1,5 +1,8 @@
 import { defineDocs, defineConfig, frontmatterSchema } from "fumadocs-mdx/config";
 import { z } from "zod";
+import rehypeShiki from "@shikijs/rehype/core";
+import { highlight } from "./utils/shiki/highlight";
+import { rehypeShikiOptions } from "./utils/rehype";
 
 export const main = defineDocs({
   dir: "content",
@@ -36,4 +39,11 @@ export const articles = defineDocs({
   },
 });
 
-export default defineConfig();
+export default defineConfig({
+  mdxOptions: async () => {
+    const highlighter = await highlight();
+    return {
+      rehypePlugins: [[rehypeShiki, highlighter, rehypeShikiOptions]],
+    };
+  },
+});

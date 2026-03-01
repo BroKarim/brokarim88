@@ -40,8 +40,8 @@ Since I use **Cloudinary**, I can just "ask" the URL to transform itself:
 ## Build Script
 
 I created a script that runs before build and generates a metadata file mapping each media URL to its placeholder.
-
-```
+\n
+```js
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
@@ -208,4 +208,3 @@ In practice:
 - 90–95% cache hit rate
 - Sub-second placeholder generation
 - No noticeable impact on build times
-

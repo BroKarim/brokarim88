@@ -587,3 +587,7 @@
     font-size: 0.8rem;
   }
 }
+
+.root {
+  isolation: isolate;
+}

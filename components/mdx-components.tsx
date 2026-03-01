@@ -1,7 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 import { cn } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -15,6 +14,10 @@ import { CopyButton } from "@/components/copy-button";
 import { getIconForLanguageExtension } from "@/components/icons";
 import { TechStack } from "@/components/tech-stack";
 import { MediaPreview } from "./media-preview";
+import { PreShikiComponent } from "@/components/code-block/mdx/pre-shiki";
+import InlineCode from "@/components/code-block/blocks/inline-code";
+
+
 export const mdxComponents = {
   h1: ({ className, ...props }: React.ComponentProps<"h1">) => <h1 className={cn("font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight", className)} {...props} />,
   h2: ({ className, ...props }: React.ComponentProps<"h2">) => {
@@ -135,9 +138,9 @@ export const mdxComponents = {
   Tab: ({ className, ...props }: React.ComponentProps<"div">) => <div className={cn(className)} {...props} />,
   Button,
   Callout,
+
   Accordion,
   AccordionContent,
-
   AccordionItem,
   AccordionTrigger,
   Alert,
@@ -145,6 +148,7 @@ export const mdxComponents = {
   AlertDescription,
   CodeTabs,
   CodeCollapsibleWrapper,
+  InlineCode,
   Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium underline underline-offset-4", className)} {...props} />,
   LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link className={cn("bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col items-center rounded-xl p-6 transition-colors sm:p-10", className)} {...props} />
@@ -152,4 +156,5 @@ export const mdxComponents = {
 
   TechStack,
   MediaPreview,
+  ...PreShikiComponent,
 };
