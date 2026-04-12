@@ -36,7 +36,7 @@ var highlight = async () => {
 // utils/rehype.ts
 var rehypeShikiOptions = {
   themes: {
-    light: "one-light",
+    light: "one-dark-pro",
     dark: "one-dark-pro"
   }
 };
