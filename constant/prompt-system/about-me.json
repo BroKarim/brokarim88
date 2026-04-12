@@ -22,6 +22,12 @@
 
   "projects": [
     {
+      "name": "Dzenn",
+      "description": "An innovation lab for experimental tools and aesthetic products. Notable projects include Dzenn Pomodoro (macOS focus timer) and Dzenn Link (customizable link-in-bio platform).",
+      "technologies": ["Next.js", "Vercel", "Swift (for Pomodoro)", "Tailwind CSS"],
+      "url": "https://dzenn-website.vercel.app/"
+    },
+    {
       "name": "21OSS",
       "description": "An open-source resource hub that curates templates, components, tools, and assets for developers and creators. Built to help ship faster with practical, high-quality open-source resources.",
       "technologies": ["Next.js 15", "Supabase", "Better Auth", "AWS S3", "Prisma"],
