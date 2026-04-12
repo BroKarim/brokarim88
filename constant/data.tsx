@@ -85,6 +85,13 @@ export const CONTACT_ITEMS: Item[] = [
     href: "https://www.threads.com/@brokariim",
   },
   {
+    id: "linkedin",
+    slug: "",
+    title: "LinkedIn",
+    description: "Professional profile and career updates.",
+    href: "https://www.linkedin.com/in/dzulkiram-hilmi/",
+  },
+  {
     id: "email",
     slug: "",
     title: "Email",
