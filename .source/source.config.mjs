@@ -60,6 +60,8 @@ var work = defineDocs({
       tag: z.string().optional(),
       author: z.string().optional(),
       media: z.string().optional(),
+      website: z.string().url().optional(),
+      github: z.string().url().optional(),
       published: z.boolean().optional().default(true)
     })
   }

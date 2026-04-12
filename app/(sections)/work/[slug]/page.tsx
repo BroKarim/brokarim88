@@ -4,6 +4,8 @@ import { SECTIONS } from "@/constant/data";
 import { workSource } from "@/lib/source";
 import { mdxComponents } from "@/components/mdx-components";
 import { MediaPreview } from "@/components/media-preview";
+import { Button } from "@/components/ui/button";
+import { Github, Globe } from "lucide-react";
 
 export default async function WorkSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -14,7 +16,7 @@ export default async function WorkSlugPage({ params }: { params: Promise<{ slug:
   if (!page) notFound();
 
   const MDX = page.data.body;
-  const { media } = page.data;
+  const { media, website, github } = page.data;
 
   return (
     <>
@@ -24,8 +26,28 @@ export default async function WorkSlugPage({ params }: { params: Promise<{ slug:
           {media && (
             <div className="sticky top-0 z-10 -mx-4 mb-4 bg-transparent ">
               <div className="px-4">
-                <MediaPreview src={media} className="rounded-xl shadow-2xl"/>
+                <MediaPreview src={media} className="rounded-xl shadow-2xl" />
               </div>
+            </div>
+          )}
+          {(website || github) && (
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              {website && (
+                <Button className="bg-transparent text-white hover:bg-background border border-dashed" asChild>
+                  <a href={website} target="_blank" rel="noopener noreferrer">
+                    <Globe className="w-5 h-5" />
+                    Website
+                  </a>
+                </Button>
+              )}
+              {github && (
+                <Button className="bg-transparent text-white hover:bg-background border border-dashed" asChild>
+                  <a href={github} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-5 h-5" />
+                    GitHub
+                  </a>
+                </Button>
+              )}
             </div>
           )}
           <article className="animate-in fade-in slide-in-from-bottom-4 duration-500 relative">

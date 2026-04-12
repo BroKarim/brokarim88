@@ -26,6 +26,7 @@
     "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
     "fumadocs-core": "^16.4.1",
     "fumadocs-mdx": "^14.2.3",
     "gray-matter": "^4.0.3",

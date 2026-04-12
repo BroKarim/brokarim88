@@ -16,6 +16,7 @@ import { TechStack } from "@/components/tech-stack";
 import { MediaPreview } from "./media-preview";
 import { PreShikiComponent } from "@/components/code-block/mdx/pre-shiki";
 import InlineCode from "@/components/code-block/blocks/inline-code";
+import { HoverLinkPreview } from "@/components/hover-link-preview";
 
 
 export const mdxComponents = {
@@ -156,5 +157,6 @@ export const mdxComponents = {
 
   TechStack,
   MediaPreview,
+  HoverLinkPreview,
   ...PreShikiComponent,
 };

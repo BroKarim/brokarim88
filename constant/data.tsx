@@ -9,6 +9,13 @@ export interface Item {
 
 export const WORK_PROJECTS: Item[] = [
   {
+    id: "0",
+    slug: "dzenn",
+    title: "Dzenn",
+    description: "A personal innovation lab for experimenting with ideas, building tools like Dzenn Pomodoro and Dzenn Link, and shipping products built on pure curiosity and aesthetics.",
+    tag: "Live",
+  },
+  {
     id: "1",
     slug: "21oss",
     title: "21OSS",
@@ -28,7 +35,7 @@ export const WORK_PROJECTS: Item[] = [
     slug: "ogtable",
     title: "OG Table",
     description: "A simple design tool for creating beautiful presentation tables. Customize themes, backgrounds, borders, corners, and export high-resolution images when you’re done.",
-    tag: "Tool",
+    tag: "Live",
   },
   {
     id: "4",
@@ -76,6 +83,13 @@ export const CONTACT_ITEMS: Item[] = [
     title: "Threads",
     description: "Casual posts and side ideas.",
     href: "https://www.threads.com/@brokariim",
+  },
+  {
+    id: "linkedin",
+    slug: "",
+    title: "LinkedIn",
+    description: "Professional profile and career updates.",
+    href: "https://www.linkedin.com/in/dzulkiram-hilmi/",
   },
   {
     id: "email",
