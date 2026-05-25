@@ -3,24 +3,31 @@ export interface Item {
   slug: string;
   title: string;
   description: string;
-  tag?: string;
+  tag?: string[];
   href?: string;
 }
 
 export const WORK_PROJECTS: Item[] = [
   {
+    id: "5",
+    slug: "icons",
+    title: "Icons",
+    description: "An icon explorer with an infinite canvas. Browse and search 200,000+ icons from Iconify with pan-and-drag navigation, fuzzy search, resize, color picker, and multi-format export.",
+    tag: ["Live", "Fork"],
+  },
+  {
     id: "0",
     slug: "dzenn",
     title: "Dzenn",
     description: "A personal innovation lab for experimenting with ideas, building tools like Dzenn Pomodoro and Dzenn Link, and shipping products built on pure curiosity and aesthetics.",
-    tag: "Live",
+    tag: ["Live"],
   },
   {
     id: "1",
     slug: "21oss",
     title: "21OSS",
     description: "An open-source catalog that actually ships. A curated hub of templates, components, tools, and assets to help developers and creators move from idea to production—without noise or fluff.",
-    tag: "Live",
+    tag: ["Live"],
   },
   {
     id: "2",
@@ -28,14 +35,14 @@ export const WORK_PROJECTS: Item[] = [
     title: "ZonaPetik",
     description:
       "A data-driven, climate-based planting calendar built for my undergraduate thesis. It integrates historical and forecast data from BMKG and NASA using the Holt-Winters method to determine optimal planting periods and planting risk through an interactive web app.",
-    tag: "Research",
+    tag: ["Research"],
   },
   {
     id: "3",
     slug: "ogtable",
     title: "OG Table",
-    description: "A simple design tool for creating beautiful presentation tables. Customize themes, backgrounds, borders, corners, and export high-resolution images when you’re done.",
-    tag: "Live",
+    description: "A simple design tool for creating beautiful presentation tables. Customize themes, backgrounds, borders, corners, and export high-resolution images when you're done.",
+    tag: ["Live"],
   },
   {
     id: "4",
@@ -43,7 +50,7 @@ export const WORK_PROJECTS: Item[] = [
     title: "Side Quests",
     description:
       "A collection of experiments, cloned repos, UI explorations, and half-serious ideas that shaped my programming journey.",
-    tag: "Side Quest",
+    tag: ["Side Quest"],
   },
 ];
 

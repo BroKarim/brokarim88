@@ -41,7 +41,7 @@ export function ModeSwitcher() {
                 : "border-white/10 bg-black/20 backdrop-blur-sm hover:bg-black/30"
             )}
           >
-            <Layers className="h-5 w-5" />
+            <Layers className="size-5" />
             <span className="sr-only">Switch mode</span>
           </Button>
         </PopoverTrigger>
@@ -64,6 +64,7 @@ export function ModeSwitcher() {
 
                 return (
                   <button
+                    type="button"
                     key={modeOption.id}
                     onClick={() => setMode(modeOption.id as typeof mode)}
                     className={cn(

@@ -30,6 +30,7 @@ const CopyButton = ({ content, iconSize = 14, className, ...props }: CopyButtonP
 
   return (
     <button
+      type="button"
       title="Copy to clipboard"
       className={cn(
         "cursor-pointer",

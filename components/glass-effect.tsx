@@ -8,7 +8,9 @@ interface GlassEffectProps {
   style?: React.CSSProperties;
 }
 
-export const GlassEffect: React.FC<GlassEffectProps> = ({ children, className = "", style = {} }) => {
+const EMPTY_STYLE: React.CSSProperties = {};
+
+export const GlassEffect: React.FC<GlassEffectProps> = ({ children, className = "", style = EMPTY_STYLE }) => {
   const glassStyle = {
     boxShadow: "0 10px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 255, 255, 0.1)",
     border: "1px solid rgba(255, 255, 255, 0.2)",

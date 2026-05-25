@@ -1,9 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import Image from "next/image";
+import { LazyMotion, m as motion, domAnimation, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 
 interface HoverLinkPreviewProps {
   href: string;
@@ -18,7 +19,7 @@ const OFFSET_Y = 16;
 
 const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage, imageAlt = "Link preview", children }) => {
   const [showPreview, setShowPreview] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const prevX = useRef<number | null>(null);
 
   const isVideo = React.useMemo(() => {
@@ -34,11 +35,6 @@ const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage,
   const springTop = useSpring(motionTop, { stiffness: 350, damping: 30 });
   const springLeft = useSpring(motionLeft, { stiffness: 350, damping: 30 });
   const springRotate = useSpring(motionRotate, { stiffness: 300, damping: 20 });
-
-  // Mount portal only on client to avoid SSR mismatch
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const calcPosition = (e: React.MouseEvent) => ({
     top: e.clientY - PREVIEW_HEIGHT - OFFSET_Y,
@@ -86,7 +82,7 @@ const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage,
             top: springTop,
             left: springLeft,
             rotate: springRotate,
-            zIndex: 9999,
+            zIndex: 50,
             pointerEvents: "none",
           }}
         >
@@ -101,14 +97,18 @@ const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage,
                 loop
                 muted
                 playsInline
+                aria-label="Link preview"
                 style={{ width: PREVIEW_WIDTH, height: PREVIEW_HEIGHT, objectFit: "cover", display: "block" }}
               />
             ) : (
-              <img
+              <Image
                 src={previewImage}
                 alt={imageAlt}
+                width={PREVIEW_WIDTH}
+                height={PREVIEW_HEIGHT}
+                className="object-cover block"
                 draggable={false}
-                style={{ width: PREVIEW_WIDTH, height: PREVIEW_HEIGHT, objectFit: "cover", display: "block" }}
+                style={{ width: PREVIEW_WIDTH, height: PREVIEW_HEIGHT }}
               />
             )}
           </div>
@@ -118,7 +118,7 @@ const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage,
   );
 
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <a
         href={href}
         target="_blank"
@@ -133,7 +133,7 @@ const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage,
 
       {/* Portal renders directly into document.body — completely outside the MDX <p> tree */}
       {mounted && createPortal(preview, document.body)}
-    </>
+    </LazyMotion>
   );
 };
 

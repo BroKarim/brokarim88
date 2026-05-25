@@ -21,6 +21,7 @@ REFERENSI DATA BROKARIM:
 ${JSON.stringify(aboutMe, null, 2)}`;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      cache: "no-store",
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,

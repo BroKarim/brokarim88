@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { Message } from "@/types/chat";
 
 const STORAGE_KEY = "portfolio-chat-history";
@@ -21,22 +21,24 @@ export function useChatHistory(initialMessage?: Message) {
     }
     return initialMessage ? [initialMessage] : [];
   });
-  const [isInitialized] = useState(() => typeof window !== "undefined");
 
-  // 2. Simpan ke localStorage HANYA jika sudah inisialisasi dan pesan berubah
-  useEffect(() => {
-    if (isInitialized && messages.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-    }
-  }, [messages, isInitialized]);
+  const updateMessages: typeof setMessages = useCallback((value) => {
+    setMessages((prev) => {
+      const next = typeof value === "function" ? value(prev) : value;
+      if (next.length > 0) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      }
+      return next;
+    });
+  }, []);
 
-  const clearHistory = () => {
+  const clearHistory = useCallback(() => {
     if (confirm("Hapus semua percakapan?")) {
       const resetMessage = initialMessage ? [initialMessage] : [];
       setMessages(resetMessage);
       localStorage.removeItem(STORAGE_KEY);
     }
-  };
+  }, [initialMessage]);
 
-  return { messages, setMessages, clearHistory, isInitialized };
+  return { messages, setMessages: updateMessages, clearHistory };
 }

@@ -14,10 +14,15 @@ const WELCOME_MESSAGE = {
 
 export function Chat() {
   const { mode } = useMode();
-  const { messages, setMessages, clearHistory, isInitialized } = useChatHistory(WELCOME_MESSAGE);
+  const { messages, setMessages, clearHistory } = useChatHistory(WELCOME_MESSAGE);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [time, setTime] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setTime(new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }));
+  }, []);
 
   const inputClasses =
     mode === "glassy"
@@ -41,10 +46,6 @@ export function Chat() {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
-
-    if (!isInitialized) {
-      return null;
-    }
 
     try {
       const response = await fetch("/api/chat", {
@@ -86,7 +87,7 @@ export function Chat() {
     <div className="flex flex-col h-screen ">
       <div className="shrink-0 border-b border-white/10 px-6 py-8">
         {messages.length > 1 && (
-          <button onClick={clearHistory} className="text-xs text-white/50 hover:text-white transition-colors">
+          <button type="button" onClick={clearHistory} className="text-xs text-white/50 hover:text-white transition-colors">
             Clear History
           </button>
         )}
@@ -100,12 +101,12 @@ export function Chat() {
         {isLoading && (
           <div className="space-y-1">
             <p className="text-xs text-white/50">
-              BrokarimGPT <span className="ml-2">{new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}</span>
+              BrokarimGPT <span className="ml-2">{time}</span>
             </p>
-            <div className="flex gap-1">
-              <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce [animation-delay:0ms]" />
-              <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce [animation-delay:150ms]" />
-              <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce [animation-delay:300ms]" />
+            <div className="flex gap-1.5 items-center">
+              <div className="size-2 bg-white/40 rounded-full animate-dot-pulse" />
+              <div className="size-2 bg-white/40 rounded-full animate-dot-pulse [animation-delay:0.2s]" />
+              <div className="size-2 bg-white/40 rounded-full animate-dot-pulse [animation-delay:0.4s]" />
             </div>
           </div>
         )}
@@ -115,13 +116,13 @@ export function Chat() {
 
       <div className="sticky bottom-0 p-2">
         <form onSubmit={handleSubmit} className="relative max-w-3xl mx-auto">
-          <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask me anything..." disabled={isLoading} className={inputClasses} />
+          <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask me anything..." disabled={isLoading} aria-label="Chat input" className={inputClasses} />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-40"
+            className="absolute right-3 top-1/2 -translate-y-1/2 size-6 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-40"
           >
-            <Send className="w-4 h-4 text-primary-foreground" />
+            <Send className="size-4 text-primary-foreground" />
           </button>
         </form>
       </div>

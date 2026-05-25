@@ -7,6 +7,13 @@ import { MediaPreview } from "@/components/media-preview";
 import { Button } from "@/components/ui/button";
 import { Github, Globe } from "lucide-react";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = SECTIONS.work.items.find((item) => item.slug === slug);
+  if (!item) return {};
+  return { title: item.title, description: item.description };
+}
+
 export default async function WorkSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = SECTIONS.work.items.find((item) => item.slug === slug);
@@ -35,7 +42,7 @@ export default async function WorkSlugPage({ params }: { params: Promise<{ slug:
               {website && (
                 <Button className="bg-transparent text-white hover:bg-background border border-dashed" asChild>
                   <a href={website} target="_blank" rel="noopener noreferrer">
-                    <Globe className="w-5 h-5" />
+                    <Globe className="size-5" />
                     Website
                   </a>
                 </Button>
@@ -43,7 +50,7 @@ export default async function WorkSlugPage({ params }: { params: Promise<{ slug:
               {github && (
                 <Button className="bg-transparent text-white hover:bg-background border border-dashed" asChild>
                   <a href={github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-5 h-5" />
+                    <Github className="size-5" />
                     GitHub
                   </a>
                 </Button>

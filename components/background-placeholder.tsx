@@ -9,16 +9,13 @@ interface BackgroundLoaderProps {
 }
 
 export function BackgroundLoader({ placeholder, optimized, children, className = "" }: BackgroundLoaderProps) {
-  const [imgSrc, setImgSrc] = useState(placeholder);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const imgSrc = loaded ? optimized : placeholder;
 
   useEffect(() => {
     const img = new Image();
     img.src = optimized;
-    img.onload = () => {
-      setImgSrc(optimized);
-      setIsLoaded(true);
-    };
+    img.onload = () => setLoaded(true);
   }, [optimized]);
 
   return (

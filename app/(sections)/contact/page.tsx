@@ -1,6 +1,12 @@
 import { Sidebar } from "@/components/sidebar";
 import { SECTIONS } from "@/constant/data";
 import { Chat } from "@/components/chat/chat";
+
+export const metadata = {
+  title: "Contact",
+  description: "Get in touch with me.",
+};
+
 export default function ContactPage() {
   return (
     <>

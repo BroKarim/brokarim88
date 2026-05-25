@@ -20,20 +20,22 @@ import { HoverLinkPreview } from "@/components/hover-link-preview";
 
 
 export const mdxComponents = {
-  h1: ({ className, ...props }: React.ComponentProps<"h1">) => <h1 className={cn("font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight", className)} {...props} />,
-  h2: ({ className, ...props }: React.ComponentProps<"h2">) => {
+  h1: ({ className, children, ...props }: React.ComponentProps<"h1">) => <h1 className={cn("font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight", className)} {...props}>{children}</h1>,
+  h2: ({ className, children, ...props }: React.ComponentProps<"h2">) => {
     return (
       <h2
-        id={props.children?.toString().replace(/ /g, "-").replace(/'/g, "").replace(/\?/g, "").toLowerCase()}
+        id={children?.toString().replace(/ /g, "-").replace(/'/g, "").replace(/\?/g, "").toLowerCase()}
         className={cn("font-heading mt-8 scroll-m-28 text-xl font-medium tracking-tight first:mt-0 lg:mt-8 [&+p]:mt-4! *:[code]:text-xl", className)}
         {...props}
-      />
+      >
+        {children}
+      </h2>
     );
   },
-  h3: ({ className, ...props }: React.ComponentProps<"h3">) => <h3 className={cn("font-heading mt-8 scroll-m-28 text-lg font-medium tracking-tight *:[code]:text-xl", className)} {...props} />,
-  h4: ({ className, ...props }: React.ComponentProps<"h4">) => <h4 className={cn("font-heading mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props} />,
-  h5: ({ className, ...props }: React.ComponentProps<"h5">) => <h5 className={cn("mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props} />,
-  h6: ({ className, ...props }: React.ComponentProps<"h6">) => <h6 className={cn("mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props} />,
+  h3: ({ className, children, ...props }: React.ComponentProps<"h3">) => <h3 className={cn("font-heading mt-8 scroll-m-28 text-lg font-medium tracking-tight *:[code]:text-xl", className)} {...props}>{children}</h3>,
+  h4: ({ className, children, ...props }: React.ComponentProps<"h4">) => <h4 className={cn("font-heading mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props}>{children}</h4>,
+  h5: ({ className, children, ...props }: React.ComponentProps<"h5">) => <h5 className={cn("mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props}>{children}</h5>,
+  h6: ({ className, children, ...props }: React.ComponentProps<"h6">) => <h6 className={cn("mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props}>{children}</h6>,
   a: ({ className, ...props }: React.ComponentProps<"a">) => <a className={cn("font-medium underline underline-offset-4", className)} {...props} />,
   p: ({ className, ...props }: React.ComponentProps<"p">) => <p className={cn("leading-relaxed not-first:mt-6", className)} {...props} />,
   strong: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => <strong className={cn("font-medium", className)} {...props} />,
@@ -41,11 +43,18 @@ export const mdxComponents = {
   ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("my-6 ml-6 list-decimal", className)} {...props} />,
   li: ({ className, ...props }: React.ComponentProps<"li">) => <li className={cn("mt-2", className)} {...props} />,
   blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 pr-4 italic bg-muted/50 py-4 rounded-r-md", className)} {...props} />,
-  img: ({ className, alt, ...props }: React.ComponentProps<"img">) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn("rounded-md", className)} alt={alt} {...props} />
-  ),
-  iframe: ({ className, ...props }: React.ComponentProps<"iframe">) => <iframe className={cn("mt-6 rounded-md w-full", className)} {...props} />,
+  img: ({ className, alt, src, width, height, ...props }: React.ComponentProps<"img">) => {
+    const imgSrc = src as string || "";
+    if (width && height) {
+      return <Image className={cn("rounded-md", className)} src={imgSrc} alt={alt || ""} width={Number(width)} height={Number(height)} />;
+    }
+    return (
+      <span className={cn("relative block", className)}>
+        <Image className="rounded-md" src={imgSrc} alt={alt || ""} fill sizes="(max-width: 768px) 100vw, 50vw" />
+      </span>
+    );
+  },
+  iframe: ({ className, title, ...props }: React.ComponentProps<"iframe">) => <iframe title={title || "Embedded content"} className={cn("mt-6 rounded-md w-full", className)} {...props} sandbox="" />,
   hr: ({ className, ...props }: React.ComponentProps<"hr">) => (
     <div className={cn("my-4 flex items-center justify-center md:my-8", className)}>
       <hr className="mx-4 h-px w-full border-0 bg-linear-to-r from-transparent via-border to-transparent" {...props} />
@@ -115,7 +124,7 @@ export const mdxComponents = {
       </>
     );
   },
-  Step: ({ className, ...props }: React.ComponentProps<"h3">) => <h3 className={cn("font-heading mt-8 scroll-m-32 text-xl font-medium tracking-tight", className)} {...props} />,
+  Step: ({ className, children, ...props }: React.ComponentProps<"h3">) => <h3 className={cn("font-heading mt-8 scroll-m-32 text-xl font-medium tracking-tight", className)} {...props}>{children}</h3>,
   Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step]" {...props} />,
   Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
     <Image className={cn("mt-6 rounded-md border", className)} src={(src as string) || ""} width={Number(width)} height={Number(height)} alt={alt || ""} {...props} />

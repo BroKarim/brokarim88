@@ -421,7 +421,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  json: (props: IconProps) => (
+  Json: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path
         fill="currentColor"
@@ -458,7 +458,7 @@ export const Icons = {
 export function getIconForLanguageExtension(language: string) {
   switch (language) {
     case "json":
-      return <Icons.json />;
+      return <Icons.Json />;
     case "css":
       return <Icons.css className="fill-foreground" />;
     case "js":

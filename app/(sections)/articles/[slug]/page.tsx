@@ -5,6 +5,13 @@ import { articlesSource } from "@/lib/source";
 import { mdxComponents } from "@/components/mdx-components";
 import { MediaPreview } from "@/components/media-preview";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = SECTIONS.articles.items.find((item) => item.slug === slug);
+  if (!item) return {};
+  return { title: item.title, description: item.description };
+}
+
 export default async function ArticlesSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = SECTIONS.articles.items.find((item) => item.slug === slug);

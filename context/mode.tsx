@@ -1,8 +1,14 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, use, useSyncExternalStore } from "react";
 
 type Mode = "realistic" | "glassy";
+
+function applyModeToDOM(mode: Mode) {
+  const root = document.documentElement;
+  root.classList.remove("realistic", "glassy");
+  root.classList.add(mode);
+}
 
 const ModeProviderContext = createContext<
   | {
@@ -14,26 +20,24 @@ const ModeProviderContext = createContext<
 >(undefined);
 
 export function ModeProvider({ children, defaultMode = "realistic", storageKey = "ui-mode" }: { children: React.ReactNode; defaultMode?: Mode; storageKey?: string }) {
-  const [mode, setMode] = useState<Mode>(defaultMode);
-  const [isMounted, setIsMounted] = useState(false);
+  const [mode, setMode] = useState<Mode>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(storageKey) as Mode | null;
+      if (saved) return saved;
+    }
+    return defaultMode;
+  });
+  const isMounted = useSyncExternalStore(() => () => {}, () => true, () => false);
 
   useEffect(() => {
-    const saved = localStorage.getItem(storageKey) as Mode;
-    if (saved) setMode(saved);
-
-    setIsMounted(true);
-  }, [storageKey]);
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("realistic", "glassy");
-    root.classList.add(mode);
+    applyModeToDOM(mode);
   }, [mode]);
 
   const value = {
     mode,
     setMode: (newMode: Mode) => {
       localStorage.setItem(storageKey, newMode);
+      applyModeToDOM(newMode);
       setMode(newMode);
     },
     isMounted,
@@ -43,7 +47,7 @@ export function ModeProvider({ children, defaultMode = "realistic", storageKey =
 }
 
 export const useMode = () => {
-  const context = useContext(ModeProviderContext);
+  const context = use(ModeProviderContext);
   if (!context) throw new Error("useMode must be used within a ModeProvider");
   return context;
 };

@@ -1,14 +1,16 @@
 // @ts-nocheck
-import * as __fd_glob_14 from "../content/work/zonapetik.mdx?collection=main"
-import * as __fd_glob_13 from "../content/work/ogtable.mdx?collection=main"
-import * as __fd_glob_12 from "../content/work/github.mdx?collection=main"
-import * as __fd_glob_11 from "../content/work/dzenn.mdx?collection=main"
-import * as __fd_glob_10 from "../content/work/21oss.mdx?collection=main"
-import * as __fd_glob_9 from "../content/articles/hand-signature.mdx?collection=main"
-import * as __fd_glob_8 from "../content/articles/blurry-placeholders.mdx?collection=main"
-import * as __fd_glob_7 from "../content/main.mdx?collection=main"
-import * as __fd_glob_6 from "../content/work/zonapetik.mdx?collection=work"
-import * as __fd_glob_5 from "../content/work/ogtable.mdx?collection=work"
+import * as __fd_glob_16 from "../content/work/zonapetik.mdx?collection=main"
+import * as __fd_glob_15 from "../content/work/ogtable.mdx?collection=main"
+import * as __fd_glob_14 from "../content/work/icons.mdx?collection=main"
+import * as __fd_glob_13 from "../content/work/github.mdx?collection=main"
+import * as __fd_glob_12 from "../content/work/dzenn.mdx?collection=main"
+import * as __fd_glob_11 from "../content/work/21oss.mdx?collection=main"
+import * as __fd_glob_10 from "../content/articles/hand-signature.mdx?collection=main"
+import * as __fd_glob_9 from "../content/articles/blurry-placeholders.mdx?collection=main"
+import * as __fd_glob_8 from "../content/main.mdx?collection=main"
+import * as __fd_glob_7 from "../content/work/zonapetik.mdx?collection=work"
+import * as __fd_glob_6 from "../content/work/ogtable.mdx?collection=work"
+import * as __fd_glob_5 from "../content/work/icons.mdx?collection=work"
 import * as __fd_glob_4 from "../content/work/github.mdx?collection=work"
 import * as __fd_glob_3 from "../content/work/dzenn.mdx?collection=work"
 import * as __fd_glob_2 from "../content/work/21oss.mdx?collection=work"
@@ -24,6 +26,6 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
 
 export const articles = await create.docs("articles", "content/articles", {}, {"blurry-placeholders.mdx": __fd_glob_0, "hand-signature.mdx": __fd_glob_1, });
 
-export const main = await create.docs("main", "content", {}, {"main.mdx": __fd_glob_7, "articles/blurry-placeholders.mdx": __fd_glob_8, "articles/hand-signature.mdx": __fd_glob_9, "work/21oss.mdx": __fd_glob_10, "work/dzenn.mdx": __fd_glob_11, "work/github.mdx": __fd_glob_12, "work/ogtable.mdx": __fd_glob_13, "work/zonapetik.mdx": __fd_glob_14, });
+export const main = await create.docs("main", "content", {}, {"main.mdx": __fd_glob_8, "articles/blurry-placeholders.mdx": __fd_glob_9, "articles/hand-signature.mdx": __fd_glob_10, "work/21oss.mdx": __fd_glob_11, "work/dzenn.mdx": __fd_glob_12, "work/github.mdx": __fd_glob_13, "work/icons.mdx": __fd_glob_14, "work/ogtable.mdx": __fd_glob_15, "work/zonapetik.mdx": __fd_glob_16, });
 
-export const work = await create.docs("work", "content/work", {}, {"21oss.mdx": __fd_glob_2, "dzenn.mdx": __fd_glob_3, "github.mdx": __fd_glob_4, "ogtable.mdx": __fd_glob_5, "zonapetik.mdx": __fd_glob_6, });
+export const work = await create.docs("work", "content/work", {}, {"21oss.mdx": __fd_glob_2, "dzenn.mdx": __fd_glob_3, "github.mdx": __fd_glob_4, "icons.mdx": __fd_glob_5, "ogtable.mdx": __fd_glob_6, "zonapetik.mdx": __fd_glob_7, });

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { getMediaPlaceholder } from "@/lib/media-placeholder";
+import Image from "next/image";
 
 type MediaPreviewProps = {
   src: string;
@@ -26,12 +27,12 @@ export function MediaPreview({ src, alt = "", className }: MediaPreviewProps) {
       }
     >
       {isVideo && (
-        <video src={src} autoPlay muted loop playsInline className="w-full h-full object-cover pointer-events-none">
+        <video src={src} autoPlay muted loop playsInline aria-label="Media preview" className="w-full h-full object-cover pointer-events-none">
           <source src={src} type="video/mp4" />
           <source src={src} type="video/quicktime" />
         </video>
       )}
-      {isImage && <img src={src} alt={alt} className="w-full h-full object-cover" />}
+      {isImage && <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />}
 
       {isVideo && !placeholder && <div className="absolute inset-0 animate-pulse bg-muted/40" />}
     </div>
