@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import TVNoise from "@/components/tv-noise";
+import SuminagashiBackground from "@/components/suminagashi-background";
 import { ModeProvider } from "@/context/mode";
 import { ModeSwitcher } from "@/components/mode/mode-switcher";
 import { ModeWrapper } from "@/components/mode/mode-wrapper";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { BackgroundLoader } from "@/components/background-placeholder";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -51,16 +50,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const BACKGROUND_PLACEHOLDER = "https://res.cloudinary.com/dctl5pihh/image/upload/w_20,q_30,e_blur:200/v1768287477/background_valoru.jpg";
-  const BACKGROUND_OPTIMIZED = "https://res.cloudinary.com/dctl5pihh/image/upload/f_auto,q_auto,w_1920/v1768287477/background_valoru.jpg";
   return (
     <html lang="en">
       <body className={` ${geistMono.variable} font-geist-mono root antialiased`}>
         <ModeProvider defaultMode="realistic" storageKey="ui-mode">
-          <BackgroundLoader placeholder={BACKGROUND_PLACEHOLDER} optimized={BACKGROUND_OPTIMIZED} className="min-h-screen text-foreground font-mono flex flex-col md:flex-row items-center justify-center p-2 md:p-8">
-            <TVNoise opacity={1} intensity={0.2} speed={40} />
+          <SuminagashiBackground />
+          <div className="relative z-10 min-h-screen text-foreground font-mono flex flex-col md:flex-row items-center justify-center p-2 md:p-8">
             <ModeWrapper>{children}</ModeWrapper>
-          </BackgroundLoader>
+          </div>
           <ModeSwitcher />
         </ModeProvider>
         <Analytics />
