@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
-export function copyToClipboard(value: string) {
+function copyToClipboard(value: string) {
   navigator.clipboard.writeText(value);
 }
 

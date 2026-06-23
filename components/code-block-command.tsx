@@ -7,7 +7,7 @@ import { useConfig } from "@/hooks/use-config";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { copyToClipboard } from "./copy-button";
+import { copyToClipboard } from "@/utils/copy";
 export function CodeBlockCommand({
   __npm__,
   __yarn__,

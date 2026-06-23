@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { Slider as SliderPrimitive } from "radix-ui";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CONFIG } from "./SuminagashiCanvas";
+import { CONFIG } from "./suminagashi-config";
 import { Icons } from "./icons";
 
 interface Setting {
@@ -35,7 +35,7 @@ export default function SettingsPopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
+        <button type="button"
           className="appearance-none border-none bg-transparent cursor-pointer flex items-center justify-center p-0"
           title="Settings"
         >

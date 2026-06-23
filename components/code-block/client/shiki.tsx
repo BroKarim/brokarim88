@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ComponentProps } from "react";
+import { useEffect, useState, useMemo, type ComponentProps } from "react";
 
 import { cn } from "@/lib/utils";
 import { highlight, Themes, type Languages } from "@/utils/shiki/highlight";
@@ -20,6 +20,22 @@ const CodeblockShiki = ({
 }: CodeblockClientShikiProps) => {
   const [highlightedHtml, setHighlightedHtml] = useState<string | null>(null);
 
+  const transformers = useMemo(
+    () =>
+      lineNumbers
+        ? [
+            {
+              name: "AddLineNumbers",
+              pre(node: any) {
+                const shikiStyles = node.properties.class;
+                node.properties.class = `${shikiStyles} shiki-line-numbers`;
+              },
+            },
+          ]
+        : [],
+    [lineNumbers],
+  );
+
   useEffect(() => {
     async function clientHighlight() {
       if (!code) {
@@ -30,22 +46,12 @@ const CodeblockShiki = ({
       const html = highlighter.codeToHtml(code, {
         lang: language,
         theme: Themes.dark,
-        transformers: [
-          {
-            name: "AddLineNumbers",
-            pre(node) {
-              if (lineNumbers) {
-                const shikiStyles = node.properties.class;
-                node.properties.class = `${shikiStyles} shiki-line-numbers`;
-              }
-            },
-          },
-        ],
+        transformers,
       });
       setHighlightedHtml(html);
     }
     void clientHighlight();
-  }, [code, language, lineNumbers]);
+  }, [code, language, transformers]);
 
   const classNames = cn("w-full bg-background overflow-x-auto ", className);
 

@@ -1,18 +1,9 @@
 "use client";
 
-import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useRef, useImperativeHandle, type Ref } from "react";
 import * as THREE from "three";
 
-export const CONFIG = {
-  SIM_RES: 256,
-  DYE_RES: 1280,
-  PRESSURE_ITER: 28,
-  VEL_DISSIPATION: 0.16,
-  DYE_DISSIPATION: 0.07,
-  CURL: 14,
-  SPLAT_RADIUS: 0.014,
-  SPLAT_FORCE: 5200,
-};
+import { CONFIG } from "./suminagashi-config";
 
 const INKS: Record<string, THREE.Color> = {
   sumi: new THREE.Color("#1a1a1f"),
@@ -108,7 +99,7 @@ export interface SuminagashiCanvasHandle {
   triggerWash(): void;
 }
 
-const SuminagashiCanvas = forwardRef<SuminagashiCanvasHandle>(function SuminagashiCanvas(_props, ref) {
+const SuminagashiCanvas = ({ ref }: { ref?: Ref<SuminagashiCanvasHandle> }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const stateRef = useRef({
     inkMode: "cycle" as string,
@@ -480,6 +471,6 @@ const SuminagashiCanvas = forwardRef<SuminagashiCanvasHandle>(function Suminagas
   }, []);
 
   return <div ref={containerRef} className="fixed inset-0" />;
-});
+};
 
 export default SuminagashiCanvas;

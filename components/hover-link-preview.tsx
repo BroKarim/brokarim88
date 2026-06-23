@@ -17,6 +17,11 @@ const PREVIEW_WIDTH = 192;
 const PREVIEW_HEIGHT = 112;
 const OFFSET_Y = 16;
 
+const calcPosition = (e: React.MouseEvent) => ({
+  top: e.clientY - PREVIEW_HEIGHT - OFFSET_Y,
+  left: e.clientX - PREVIEW_WIDTH / 2,
+});
+
 const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage, imageAlt = "Link preview", children }) => {
   const [showPreview, setShowPreview] = useState(false);
   const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
@@ -35,11 +40,6 @@ const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({ href, previewImage,
   const springTop = useSpring(motionTop, { stiffness: 350, damping: 30 });
   const springLeft = useSpring(motionLeft, { stiffness: 350, damping: 30 });
   const springRotate = useSpring(motionRotate, { stiffness: 300, damping: 20 });
-
-  const calcPosition = (e: React.MouseEvent) => ({
-    top: e.clientY - PREVIEW_HEIGHT - OFFSET_Y,
-    left: e.clientX - PREVIEW_WIDTH / 2,
-  });
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const { top, left } = calcPosition(e);

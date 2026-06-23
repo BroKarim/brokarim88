@@ -36,7 +36,7 @@ export const mdxComponents = {
   h4: ({ className, children, ...props }: React.ComponentProps<"h4">) => <h4 className={cn("font-heading mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props}>{children}</h4>,
   h5: ({ className, children, ...props }: React.ComponentProps<"h5">) => <h5 className={cn("mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props}>{children}</h5>,
   h6: ({ className, children, ...props }: React.ComponentProps<"h6">) => <h6 className={cn("mt-8 scroll-m-28 text-base font-medium tracking-tight", className)} {...props}>{children}</h6>,
-  a: ({ className, ...props }: React.ComponentProps<"a">) => <a className={cn("font-medium underline underline-offset-4", className)} {...props} />,
+  a: ({ className, children, ...props }: React.ComponentProps<"a">) => <a className={cn("font-medium underline underline-offset-4", className)} {...props}>{children}</a>,
   p: ({ className, ...props }: React.ComponentProps<"p">) => <p className={cn("leading-relaxed not-first:mt-6", className)} {...props} />,
   strong: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => <strong className={cn("font-medium", className)} {...props} />,
   ul: ({ className, ...props }: React.ComponentProps<"ul">) => <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />,

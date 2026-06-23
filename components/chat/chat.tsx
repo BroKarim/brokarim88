@@ -17,12 +17,10 @@ export function Chat() {
   const { messages, setMessages, clearHistory } = useChatHistory(WELCOME_MESSAGE);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [time, setTime] = useState("");
+  const [time] = useState(() =>
+    new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })
+  );
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setTime(new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }));
-  }, []);
 
   const inputClasses =
     mode === "glassy"
@@ -94,8 +92,8 @@ export function Chat() {
       </div>
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto px-6 py-8 space-y-8">
-        {messages.map((message, index) => (
-          <ChatMessage key={index} message={message} />
+        {messages.map((message) => (
+          <ChatMessage key={message.timestamp} message={message} />
         ))}
 
         {isLoading && (

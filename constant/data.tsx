@@ -7,7 +7,7 @@ export interface Item {
   href?: string;
 }
 
-export const WORK_PROJECTS: Item[] = [
+const WORK_PROJECTS: Item[] = [
   {
     id: "5",
     slug: "icons",
@@ -55,7 +55,7 @@ export const WORK_PROJECTS: Item[] = [
 ];
 
 
-export const ARTICLES: Item[] = [
+const ARTICLES: Item[] = [
   {
     id: "1",
     slug: "blurry-placeholders",
@@ -70,7 +70,7 @@ export const ARTICLES: Item[] = [
   },
 ];
 
-export const CONTACT_ITEMS: Item[] = [
+const CONTACT_ITEMS: Item[] = [
   {
     id: "chat",
     slug: "",
