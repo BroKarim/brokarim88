@@ -55,8 +55,8 @@ export default function RootLayout({
       <body className={` ${geistMono.variable} font-geist-mono root antialiased`}>
         <ModeProvider defaultMode="realistic" storageKey="ui-mode">
           <SuminagashiBackground />
-          <div className="relative z-10 min-h-screen text-foreground font-mono flex flex-col md:flex-row items-center justify-center p-2 md:p-8">
-            <ModeWrapper>{children}</ModeWrapper>
+          <div className="pointer-events-none relative z-10 min-h-screen text-foreground font-mono flex flex-col md:flex-row items-center justify-center p-2 md:p-8">
+            <div className="pointer-events-auto"><ModeWrapper>{children}</ModeWrapper></div>
           </div>
           <ModeSwitcher />
         </ModeProvider>

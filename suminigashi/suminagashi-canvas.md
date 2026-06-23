@@ -1,3 +1,8 @@
+# SuminagashiCanvas — Full Source
+
+Copy this file verbatim as `src/components/SuminagashiCanvas.tsx`.
+
+```tsx
 "use client";
 
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
@@ -10,7 +15,7 @@ const CONFIG = {
   VEL_DISSIPATION: 0.16,
   DYE_DISSIPATION: 0.07,
   CURL: 14,
-  SPLAT_RADIUS: 0.014,
+  SPLAT_RADIUS: 0.0026,
   SPLAT_FORCE: 5200,
 } as const;
 
@@ -22,7 +27,7 @@ const INKS: Record<string, THREE.Color> = {
 };
 
 const INK_KEYS = Object.keys(INKS);
-const PAPER = new THREE.Color("#5c5c5c");
+const PAPER = new THREE.Color("#efeae0");
 
 const VERT = /* glsl */ `
   varying vec2 vUv;
@@ -483,3 +488,4 @@ const SuminagashiCanvas = forwardRef<SuminagashiCanvasHandle>(function Suminagas
 });
 
 export default SuminagashiCanvas;
+```
