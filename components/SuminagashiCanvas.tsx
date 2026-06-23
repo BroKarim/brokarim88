@@ -3,7 +3,7 @@
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import * as THREE from "three";
 
-const CONFIG = {
+export const CONFIG = {
   SIM_RES: 256,
   DYE_RES: 1280,
   PRESSURE_ITER: 28,
@@ -12,7 +12,7 @@ const CONFIG = {
   CURL: 14,
   SPLAT_RADIUS: 0.014,
   SPLAT_FORCE: 5200,
-} as const;
+};
 
 const INKS: Record<string, THREE.Color> = {
   sumi: new THREE.Color("#1a1a1f"),
