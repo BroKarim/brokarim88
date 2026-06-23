@@ -2,6 +2,8 @@
 
 import { useState, useCallback } from "react";
 import type { SuminagashiCanvasHandle } from "./SuminagashiCanvas";
+import { Icons } from "./icons";
+import { useMode } from "@/context/mode";
 
 interface DockProps {
   canvasRef: React.RefObject<SuminagashiCanvasHandle | null>;
@@ -16,29 +18,34 @@ const INKS = [
 ] as const;
 
 export default function Dock({ canvasRef }: DockProps) {
+  const { mode } = useMode();
   const [activeInk, setActiveInk] = useState<string>("cycle");
-  const [autoFlow, setAutoFlow] = useState(true);
+
+  const isGlassy = mode === "glassy";
+  const dockBase = isGlassy
+    ? "bg-white/10 backdrop-blur-md border-white/20"
+    : "bg-[#222] border";
 
   const handleInkClick = useCallback(
     (ink: string) => {
       setActiveInk(ink);
       canvasRef.current?.setInkMode(ink);
     },
-    [canvasRef]
+    [canvasRef],
   );
-
-  const handleAutoToggle = useCallback(() => {
-    const next = canvasRef.current?.toggleAutoFlow();
-    if (next !== undefined) setAutoFlow(next);
-  }, [canvasRef]);
 
   const handleWash = useCallback(() => {
     canvasRef.current?.triggerWash();
   }, [canvasRef]);
 
   return (
-    <div className="dock" role="toolbar" aria-label="墨の操作">
-      <div className="inks">
+    <div className="fixed left-1/2 bottom-[26px] -translate-x-1/2 z-50 flex gap-2">
+      {/* ink dock */}
+      <div
+        className={`flex items-center gap-3.5 px-[22px] py-3 rounded-full ${dockBase} shadow-[inset_0_1px_rgb(255_255_255/0.15)]`}
+        role="toolbar"
+        aria-label="Ink selection"
+      >
         {INKS.map(({ key, label }) => (
           <button
             key={key}
@@ -51,23 +58,19 @@ export default function Dock({ canvasRef }: DockProps) {
           </button>
         ))}
       </div>
-      <button
-        id="autoBtn"
-        className="act"
-        aria-pressed={autoFlow}
-        title="放置中の自動滴下と水流のオン/オフ"
-        onClick={handleAutoToggle}
+      {/* wash dock */}
+      <div
+        className={`flex items-center justify-center w-12 h-12 rounded-full ${dockBase} shadow-[inset_0_1px_rgb(255_255_255/0.15)]`}
+        role="toolbar"
       >
-        自動演出
-      </button>
-      <button
-        id="washBtn"
-        className="act"
-        title="インクを徐々に洗い流す"
-        onClick={handleWash}
-      >
-        洗い流す
-      </button>
+        <button
+          className="appearance-none border-none bg-transparent cursor-pointer flex items-center justify-center p-0"
+          title="Wash away ink"
+          onClick={handleWash}
+        >
+          <Icons.trashh className="w-5 h-5 text-white/70" />
+        </button>
+      </div>
     </div>
   );
 }
