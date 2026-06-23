@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Slider as SliderPrimitive } from "radix-ui";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CONFIG } from "./suminagashi-config";
 import { Icons } from "./icons";
+import { IntensitySlider } from "./ui/intensity-slider";
 
 interface Setting {
   key: keyof typeof CONFIG;
@@ -23,9 +23,7 @@ const SETTINGS: Setting[] = [
 ];
 
 export default function SettingsPopover() {
-  const [vals, setVals] = useState(() =>
-    Object.fromEntries(SETTINGS.map((s) => [s.key, CONFIG[s.key]])) as Record<keyof typeof CONFIG, number>,
-  );
+  const [vals, setVals] = useState(() => Object.fromEntries(SETTINGS.map((s) => [s.key, CONFIG[s.key]])) as Record<keyof typeof CONFIG, number>);
 
   const handleChange = useCallback((key: keyof typeof CONFIG, value: number) => {
     CONFIG[key] = value as never;
@@ -35,35 +33,20 @@ export default function SettingsPopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button type="button"
-          className="appearance-none border-none bg-transparent cursor-pointer flex items-center justify-center p-0"
-          title="Settings"
-        >
+        <button type="button" className="appearance-none border-none bg-transparent cursor-pointer flex items-center justify-center p-0" title="Settings">
           <Icons.settings className="w-5 h-5 text-white/70" />
         </button>
       </PopoverTrigger>
-      <PopoverContent side="top" sideOffset={16} align="center" className="w-72 p-5">
+      <PopoverContent side="top" sideOffset={16} align="center" className="bg-[#222] border shadow-[inset_0_1px_rgb(255_255_255/0.15)]">
         <div className="space-y-5">
           <h3 className="text-sm font-medium text-foreground">Settings</h3>
-          {SETTINGS.map(({ key, label, min, max, step, format }) => (
+          {SETTINGS.map(({ key, label, min, max, step }) => (
             <div key={key} className="space-y-2">
               <div className="flex justify-between items-baseline">
-                <label className="text-xs text-muted-foreground">{label}</label>
-                <span className="text-xs tabular-nums text-foreground font-medium">{format(vals[key])}</span>
+                <label className="text-xs text-white">{label}</label>
+                {/* <span className="text-xs tabular-nums text-foreground font-medium">{format(vals[key])}</span> */}
               </div>
-              <SliderPrimitive.Root
-                value={[vals[key]]}
-                min={min}
-                max={max}
-                step={step}
-                onValueChange={([v]: number[]) => handleChange(key, v)}
-                className="relative flex w-full touch-none items-center h-9 rounded-md border border-input bg-background px-3 cursor-pointer"
-              >
-                <SliderPrimitive.Track className="relative grow overflow-hidden rounded-full bg-muted h-2">
-                  <SliderPrimitive.Range className="absolute h-full bg-primary" />
-                </SliderPrimitive.Track>
-                <SliderPrimitive.Thumb className="block size-5 rounded-full border-2 border-primary bg-white ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
-              </SliderPrimitive.Root>
+              <IntensitySlider value={vals[key]} min={min} max={max} step={step} onValueChange={(v) => handleChange(key, v)} />
             </div>
           ))}
         </div>

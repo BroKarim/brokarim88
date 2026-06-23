@@ -4,10 +4,6 @@ import { useState, useCallback } from "react";
 import type { SuminagashiCanvasHandle } from "./SuminagashiCanvas";
 import { Icons } from "./icons";
 import { useMode } from "@/context/mode";
-import { FloatingButton, FloatingButtonItem } from "./ui/floating-button";
-import { DribbbleIcon, FacebookIcon, LinkedinIcon, PlusIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import SettingsPopover from "./SettingsPopover";
 
 interface DockProps {
@@ -21,24 +17,6 @@ const INKS = [
   { key: "shu", label: "朱" },
   { key: "matsuba", label: "松葉" },
 ] as const;
-
-const items = [
-  {
-    id: "facebook",
-    icon: <FacebookIcon />,
-    bgColor: "bg-[#1877f2]",
-  },
-  {
-    id: "dribbble",
-    icon: <DribbbleIcon />,
-    bgColor: "bg-[#ea4c89]",
-  },
-  {
-    id: "linkedin",
-    icon: <LinkedinIcon />,
-    bgColor: "bg-[#0a66c2]",
-  },
-];
 
 export default function Dock({ canvasRef }: DockProps) {
   const { mode } = useMode();
