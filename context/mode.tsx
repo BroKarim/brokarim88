@@ -20,14 +20,16 @@ const ModeProviderContext = createContext<
 >(undefined);
 
 export function ModeProvider({ children, defaultMode = "realistic", storageKey = "ui-mode" }: { children: React.ReactNode; defaultMode?: Mode; storageKey?: string }) {
-  const [mode, setMode] = useState<Mode>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem(storageKey) as Mode | null;
-      if (saved) return saved;
-    }
-    return defaultMode;
-  });
+  const [mode, setMode] = useState<Mode>(defaultMode);
   const isMounted = useSyncExternalStore(() => () => {}, () => true, () => false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(storageKey) as Mode | null;
+    if (saved && saved !== defaultMode) {
+      setMode(saved);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     applyModeToDOM(mode);
